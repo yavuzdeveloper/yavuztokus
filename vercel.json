@@ -1,8 +1,14 @@
 {
-  "rewrites": [
+  "version": 2,
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/assets/.*",
+      "headers": { "Content-Type": "application/javascript" }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html",
+      "headers": { "Content-Type": "text/html" }
     }
   ]
 }
