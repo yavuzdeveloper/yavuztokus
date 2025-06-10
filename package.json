@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@emailjs/browser": "^3.10.0",
-    "@react-three/drei": "^9.56.24",
-    "@react-three/fiber": "^8.11.1",
+    "@react-three/drei": "^9.94.0",
+    "@react-three/fiber": "^8.18.0",
     "clsx": "^2.1.1",
     "dotenv": "^16.5.0",
     "drei": "^2.2.21",
@@ -24,7 +24,7 @@
     "react-router-dom": "^6.8.1",
     "react-vertical-timeline-component": "^3.6.0",
     "tailwind-merge": "^3.1.0",
-    "three": "^0.149.0"
+    "three": "^0.158.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

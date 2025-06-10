@@ -7,24 +7,19 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: id => {
-          if (id.includes("node_modules")) {
-            if (id.includes("three") || id.includes("@react-three")) {
-              return "vendor_three";
-            }
-            if (id.includes("framer-motion")) {
-              return "vendor_framer";
-            }
-            if (id.includes("lodash")) {
-              return "vendor_lodash";
-            }
-            return "vendor";
-          }
+        manualChunks: {
+          three_core: ["three"],
+          r3f: ["@react-three/fiber"],
+          drei: ["@react-three/drei"],
         },
         chunkFileNames: "assets/[name]-[hash].js",
       },
     },
     chunkSizeWarningLimit: 750,
     target: "esnext", // tree-shaking
+  },
+  optimizeDeps: {
+    include: ["react", "react-dom", "@react-three/fiber", "@react-three/drei"],
+    exclude: ["@chevrotain/utils"],
   },
 });
