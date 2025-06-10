@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import backend from "./backend.png";
 import creator from "./creator.png";
 import mobile from "./mobile.png";
@@ -20,15 +19,11 @@ import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
 import nextjs from "./tech/nextjs.svg";
-
-import ps from "./company/ps.png";
-
 import modernArtCollection from "./modernArtCollection.webp";
 import paperRockScissors from "./paperRockScissors.webp";
 import pricingPage from "./pricingPage.webp";
 
 export {
-  logo,
   backend,
   creator,
   mobile,
@@ -51,6 +46,5 @@ export {
   threejs,
   paperRockScissors,
   pricingPage,
-  ps,
   modernArtCollection,
 };
