@@ -23,9 +23,9 @@ import nextjs from "./tech/nextjs.svg";
 
 import ps from "./company/ps.png";
 
-import modernArtCollection from "./modernArtCollection.png";
-import paperRockScissors from "./paperRockScissors.png";
-import pricingPage from "./pricingPage.png";
+import modernArtCollection from "./modernArtCollection.webp";
+import paperRockScissors from "./paperRockScissors.webp";
+import pricingPage from "./pricingPage.webp";
 
 export {
   logo,

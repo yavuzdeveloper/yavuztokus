@@ -1,17 +1,18 @@
+import { lazy, Suspense } from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import {
-  About,
-  Contact,
-  Experience,
-  Feedbacks,
-  Hero,
-  Navbar,
-  Tech,
-  Works,
-  StarsCanvas,
-} from "./components";
-import Footer from "./components/Footer";
+import { Navbar, Hero } from "./components";
+
+const components = {
+  About: lazy(() => import("./components/About")),
+  Contact: lazy(() => import("./components/Contact")),
+  Experience: lazy(() => import("./components/Experience")),
+  Feedbacks: lazy(() => import("./components/Feedbacks")),
+  StarsCanvas: lazy(() => import("./components/canvas/Stars")),
+  Tech: lazy(() => import("./components/Tech")),
+  Works: lazy(() => import("./components/Works")),
+  Footer: lazy(() => import("./components/Footer")),
+};
 
 const App = () => {
   return (
@@ -21,16 +22,28 @@ const App = () => {
           <Navbar />
           <Hero />
         </div>
-        <About />
-        <Experience />
-        <Tech />
-        <Works />
-        <Feedbacks />
-        <div className="relative z-0">
-          <Contact />
-          <StarsCanvas />
-          <Footer />
-        </div>
+        <Suspense>
+          <div>
+            {[
+              components.About,
+              components.Experience,
+              components.Tech,
+              components.Works,
+              components.Feedbacks,
+            ].map((Component, index) => (
+              <Component key={index} />
+            ))}
+          </div>
+          <div className="relative z-0">
+            {[
+              components.Contact,
+              components.StarsCanvas,
+              components.Footer,
+            ].map((Component, index) => (
+              <Component key={index} />
+            ))}
+          </div>
+        </Suspense>
       </div>
     </BrowserRouter>
   );
