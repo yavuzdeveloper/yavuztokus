@@ -97,16 +97,16 @@ const technologies = [
     icon: tailwind,
   },
   {
-    name: "Three JS",
-    icon: threejs,
-  },
-  {
     name: "git",
     icon: git,
   },
   {
     name: "figma",
     icon: figma,
+  },
+  {
+    name: "Three JS",
+    icon: threejs,
   },
 ];
 
