@@ -548,7 +548,9 @@
 import { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF, Preload } from "@react-three/drei";
+
 import CanvasLoader from "../Loader";
+import { computer } from "../../assets";
 
 const Computers = ({ isMobile }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
@@ -600,24 +602,41 @@ const ComputersCanvas = () => {
     };
   }, []);
 
+  if (isMobile) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+        }}
+      >
+        <img
+          src={computer}
+          alt="Computer model"
+          style={{ width: "100%", maxWidth: "300px", objectFit: "contain" }}
+        />
+      </div>
+    );
+  }
+
   return (
     <Canvas
       frameloop="demand"
-      shadows={!isMobile}
-      dpr={[1, isMobile ? 1.2 : 2]}
-      camera={{ position: [20, 3, 5], fov: isMobile ? 30 : 25 }}
-      gl={{ preserveDrawingBuffer: true, antialias: !isMobile }}
+      shadows
+      dpr={[1, 2]}
+      camera={{ position: [20, 3, 5], fov: 25 }}
+      gl={{ preserveDrawingBuffer: true, antialias: true }}
       style={{ width: "100%", height: "100%" }}
     >
       <Suspense fallback={<CanvasLoader />}>
-        {!isMobile && (
-          <OrbitControls
-            enableZoom={false}
-            maxPolarAngle={Math.PI / 2}
-            minPolarAngle={Math.PI / 2}
-          />
-        )}
-        <Computers isMobile={isMobile} />
+        <OrbitControls
+          enableZoom={false}
+          maxPolarAngle={Math.PI / 2}
+          minPolarAngle={Math.PI / 2}
+        />
+        <Computers isMobile={false} />
       </Suspense>
       <Preload all />
     </Canvas>

@@ -206,37 +206,7 @@ import CanvasLoader from "../Loader";
 
 const Ball = ({ imgUrl }) => {
   const [decal] = useTexture([imgUrl]);
-  const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 500px)");
-    setIsMobile(mediaQuery.matches);
-    const handler = e => setIsMobile(e.matches);
-    mediaQuery.addEventListener("change", handler);
-    return () => mediaQuery.removeEventListener("change", handler);
-  }, []);
-
-  // Mobil versiyon: daha sade
-  if (isMobile) {
-    return (
-      <>
-        <ambientLight intensity={0.4} />
-        <mesh scale={2.2}>
-          <icosahedronGeometry args={[1, 0]} />
-          <meshStandardMaterial color="#fff8eb" flatShading />
-          <Decal
-            position={[0, 0, 1]}
-            rotation={[2 * Math.PI, 0, 6.25]}
-            scale={1}
-            map={decal}
-            flatShading
-          />
-        </mesh>
-      </>
-    );
-  }
-
-  // Masaüstü versiyon: orijinal
   return (
     <Float speed={1.75} rotationIntensity={1} floatIntensity={2}>
       <ambientLight intensity={0.25} />
@@ -262,6 +232,32 @@ const Ball = ({ imgUrl }) => {
 };
 
 const BallCanvas = ({ icon }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 500px)");
+    setIsMobile(mediaQuery.matches);
+    const handler = e => setIsMobile(e.matches);
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
+
+  if (isMobile) {
+    return (
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <img
+          src={icon}
+          alt="icon"
+          style={{
+            width: "100px",
+            height: "100px",
+            objectFit: "contain",
+          }}
+        />
+      </div>
+    );
+  }
+
   return (
     <Canvas
       frameloop="demand"

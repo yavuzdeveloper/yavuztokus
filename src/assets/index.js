@@ -22,6 +22,7 @@ import nextjs from "./tech/nextjs.svg";
 import modernArtCollection from "./modernArtCollection.webp";
 import paperRockScissors from "./paperRockScissors.webp";
 import pricingPage from "./pricingPage.webp";
+import computer from "./computer.webp";
 
 export {
   backend,
@@ -47,4 +48,5 @@ export {
   paperRockScissors,
   pricingPage,
   modernArtCollection,
+  computer,
 };
