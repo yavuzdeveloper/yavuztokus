@@ -23,17 +23,16 @@ const App = () => {
           <Hero />
         </div>
         <Suspense>
-          <div>
-            {[
-              components.About,
-              components.Experience,
-              components.Tech,
-              components.Works,
-              components.Feedbacks,
-            ].map((Component, index) => (
-              <Component key={index} />
-            ))}
-          </div>
+          {[
+            components.About,
+            components.Experience,
+            components.Tech,
+            components.Works,
+            components.Feedbacks,
+          ].map((Component, index) => (
+            <Component key={index} />
+          ))}
+
           <div className="relative z-0">
             {[
               components.Contact,

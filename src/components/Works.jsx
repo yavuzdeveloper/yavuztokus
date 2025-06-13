@@ -6,6 +6,7 @@ import { github } from "../assets";
 import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
+import Link from "./ui/Link";
 
 const ProjectCard = ({
   index,
@@ -49,26 +50,7 @@ const ProjectCard = ({
         <div className="mt-5">
           <div className="flex flex-wrap items-center gap-3">
             <h3 className="text-white font-bold text-[20px]">{name}</h3>
-            <a
-              href={liveLink}
-              target="_blank"
-              className="inline-flex items-center gap-1 text-secondary hover:text-blue-600"
-            >
-              Live
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                className="inline-block"
-              >
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
-              </svg>
-            </a>
+            <Link href={liveLink} label="Live" />
           </div>
           <p className="mt-2 text-secondary text-[14px]">{description}</p>
         </div>
