@@ -52,10 +52,22 @@ const ProjectCard = ({
             <a
               href={liveLink}
               target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors underline underline-offset-4"
+              className="inline-flex items-center gap-1 text-secondary hover:text-blue-600"
             >
-              View Live
+              Live
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                className="inline-block"
+              >
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
             </a>
           </div>
           <p className="mt-2 text-secondary text-[14px]">{description}</p>

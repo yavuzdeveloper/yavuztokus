@@ -118,7 +118,7 @@ const experiences = [
     imageUrl: "https://app.point-sigma.com/assets/images/PsLogo.png",
     icon: web,
     iconBg: "#fbc3bc",
-    date: "Sep 2023 - Present",
+    date: "Sep 2023 - May 2025",
     points: [
       "Transformed Salesforce Aura and Lightning Web Components (LWC) into reusable and modular React components, improving maintainability and scalability.",
       "Developed functional components using React hooks and custom hooks to optimize performance and code reusability.",
@@ -154,7 +154,7 @@ const experiences = [
     technologies: "React, Next.js, Redux, GraphQL, PHP, Shopify Polaris",
   },
   {
-    title: "Frontend Developer (Contract)",
+    title: "Frontend Developer",
     company_name: "T-Con",
     company_url: "http://www.t-con.co.uk/",
     imageUrl: "https://www.t-con.co.uk/images/t-con-white.png",
