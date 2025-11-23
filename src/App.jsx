@@ -6,6 +6,7 @@ import { Navbar, Hero } from "./components";
 const components = {
   About: lazy(() => import("./components/About")),
   Contact: lazy(() => import("./components/Contact")),
+  Chat: lazy(() => import("./components/Chat")),
   Experience: lazy(() => import("./components/Experience")),
   Feedbacks: lazy(() => import("./components/Feedbacks")),
   StarsCanvas: lazy(() => import("./components/canvas/Stars")),
@@ -36,6 +37,7 @@ const App = () => {
           <div className="relative z-0">
             {[
               components.Contact,
+              components.Chat,
               components.StarsCanvas,
               components.Footer,
             ].map((Component, index) => (
