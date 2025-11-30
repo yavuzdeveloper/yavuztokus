@@ -25,14 +25,22 @@ export const navLinks = [
   {
     id: "about",
     title: "About",
+    type: "anchor",
   },
   {
     id: "work",
     title: "Work",
+    type: "anchor",
   },
   {
     id: "contact",
     title: "Contact",
+    type: "anchor",
+  },
+  {
+    id: "blog",
+    title: "Blog",
+    type: "route",
   },
 ];
 

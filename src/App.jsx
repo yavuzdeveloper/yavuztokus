@@ -1,50 +1,82 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { Navbar, Hero } from "./components";
+import Loading from "./components/Loading";
 
-const components = {
-  About: lazy(() => import("./components/About")),
-  Contact: lazy(() => import("./components/Contact")),
-  Chat: lazy(() => import("./components/Chat")),
-  Experience: lazy(() => import("./components/Experience")),
-  Feedbacks: lazy(() => import("./components/Feedbacks")),
-  StarsCanvas: lazy(() => import("./components/canvas/Stars")),
-  Tech: lazy(() => import("./components/Tech")),
-  Works: lazy(() => import("./components/Works")),
-  Footer: lazy(() => import("./components/Footer")),
-};
+// Lazy load components
+const About = lazy(() => import("./components/About"));
+const Contact = lazy(() => import("./components/Contact"));
+const Chat = lazy(() => import("./components/Chat"));
+const Experience = lazy(() => import("./components/Experience"));
+const Feedbacks = lazy(() => import("./components/Feedbacks"));
+const StarsCanvas = lazy(() => import("./components/canvas/Stars"));
+const Tech = lazy(() => import("./components/Tech"));
+const Works = lazy(() => import("./components/Works"));
+const Footer = lazy(() => import("./components/Footer"));
+const Blog = lazy(() => import("./components/blog/Blog"));
+const NotFound = lazy(() => import("./components/NotFound"));
 
 const App = () => {
   return (
     <BrowserRouter>
       <div className="relative z-0 bg-primary">
-        <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
-          <Navbar />
-          <Hero />
-        </div>
-        <Suspense>
-          {[
-            components.About,
-            components.Experience,
-            components.Tech,
-            components.Works,
-            components.Feedbacks,
-          ].map((Component, index) => (
-            <Component key={index} />
-          ))}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<Loading />}>
+                <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
+                  <Navbar />
+                  <Hero />
+                </div>
+                <About />
+                <Experience />
+                <Tech />
+                <Works />
+                <Feedbacks />
+                <div className="relative z-0">
+                  <Contact />
+                  <Chat />
+                  <StarsCanvas />
+                </div>
+                <Footer />
+              </Suspense>
+            }
+          />
 
-          <div className="relative z-0">
-            {[
-              components.Contact,
-              components.Chat,
-              components.StarsCanvas,
-              components.Footer,
-            ].map((Component, index) => (
-              <Component key={index} />
-            ))}
-          </div>
-        </Suspense>
+          {/* Blog routes */}
+          <Route
+            path="/blog"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Navbar />
+                <Blog />
+                <Footer />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/blog/:slug"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Navbar />
+                <Blog />
+                <Footer />
+              </Suspense>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Navbar />
+                <NotFound />
+                <Footer />
+              </Suspense>
+            }
+          />
+        </Routes>
       </div>
     </BrowserRouter>
   );

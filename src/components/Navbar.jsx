@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { styles } from "../styles";
 import { navLinks } from "../constants";
@@ -10,6 +10,7 @@ const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,9 +23,22 @@ const Navbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const isHomePage = location.pathname === "/";
+
+  const handleNavClick = nav => {
+    setToggle(false);
+    setActive(nav.title);
+
+    if (nav.type === "anchor" && isHomePage) {
+      const element = document.getElementById(nav.id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   return (
     <nav
@@ -52,6 +66,7 @@ const Navbar = () => {
           </p>
         </Link>
 
+        {/* Desktop Navigation */}
         <ul className="list-none hidden sm:flex flex-row gap-10">
           {navLinks.map(nav => (
             <li
@@ -59,13 +74,33 @@ const Navbar = () => {
               className={`${
                 active === nav.title ? "text-white" : "text-secondary"
               } hover:text-white text-[18px] font-medium cursor-pointer`}
-              onClick={() => setActive(nav.title)}
             >
-              <a href={`#${nav.id}`}>{nav.title}</a>
+              {nav.type === "route" ? (
+                <Link to={`/${nav.id}`} onClick={() => setActive(nav.title)}>
+                  {nav.title}
+                </Link>
+              ) : (
+                <a
+                  href={isHomePage ? `#${nav.id}` : `/#${nav.id}`}
+                  onClick={e => {
+                    if (isHomePage) {
+                      e.preventDefault();
+                      const element = document.getElementById(nav.id);
+                      if (element) {
+                        element.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }
+                    setActive(nav.title);
+                  }}
+                >
+                  {nav.title}
+                </a>
+              )}
             </li>
           ))}
         </ul>
 
+        {/* Mobile Navigation */}
         <div className="sm:hidden flex flex-1 justify-end items-center">
           <img
             src={toggle ? close : menu}
@@ -86,12 +121,15 @@ const Navbar = () => {
                   className={`font-poppins font-medium cursor-pointer text-[16px] ${
                     active === nav.title ? "text-white" : "text-secondary"
                   }`}
-                  onClick={() => {
-                    setToggle(!toggle);
-                    setActive(nav.title);
-                  }}
+                  onClick={() => handleNavClick(nav)}
                 >
-                  <a href={`#${nav.id}`}>{nav.title}</a>
+                  {nav.type === "route" ? (
+                    <Link to={`/${nav.id}`}>{nav.title}</Link>
+                  ) : (
+                    <a href={isHomePage ? `#${nav.id}` : `/#${nav.id}`}>
+                      {nav.title}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

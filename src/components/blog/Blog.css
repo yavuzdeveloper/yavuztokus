@@ -1,0 +1,68 @@
+.blog-content pre {
+  background: #1a1a1a !important;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  border: 1px solid #333;
+  color: #f8f8f2;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.blog-content pre code {
+  background: none !important;
+  padding: 0 !important;
+  border: none !important;
+  color: inherit !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+}
+
+.blog-content pre .token.tag {
+  color: #569cd6;
+}
+.blog-content pre .token.script-punctuation {
+  color: #808080;
+}
+.blog-content pre .token.string {
+  color: #ce9178;
+}
+.blog-content pre .token.keyword {
+  color: #569cd6;
+}
+.blog-content pre .token.function {
+  color: #dcdcaa;
+}
+.blog-content pre .token.comment {
+  color: #6a9955;
+}
+.blog-content pre .token.number {
+  color: #b5cea8;
+}
+.blog-content pre .token.operator {
+  color: #d4d4d4;
+}
+.blog-content pre .token.punctuation {
+  color: #d4d4d4;
+}
+
+.blog-content pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.blog-content pre::-webkit-scrollbar-track {
+  background: #2a2a2a;
+  border-radius: 4px;
+}
+
+.blog-content pre::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 4px;
+}
+
+.blog-content pre::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
