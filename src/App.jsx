@@ -15,6 +15,7 @@ const Tech = lazy(() => import("./components/Tech"));
 const Works = lazy(() => import("./components/Works"));
 const Footer = lazy(() => import("./components/Footer"));
 const Blog = lazy(() => import("./components/blog/Blog"));
+const BlogPost = lazy(() => import("./components/blog/BlogPost"));
 const NotFound = lazy(() => import("./components/NotFound"));
 
 const App = () => {
@@ -61,7 +62,7 @@ const App = () => {
             element={
               <Suspense fallback={<Loading />}>
                 <Navbar />
-                <Blog />
+                <BlogPost />
                 <Footer />
               </Suspense>
             }
