@@ -123,7 +123,7 @@ const salesReport = sales.reduce((report, sale) => {
     `,
     image:
       "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    date: "2024-01-15",
+    date: "2024-02-25",
     readTime: "5 min",
     category: "JavaScript",
   },
@@ -226,7 +226,7 @@ function subscribe(callback) {
     `,
     image:
       "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    date: "2024-01-20",
+    date: "2024-03-20",
     readTime: "7 min",
     category: "React",
   },
@@ -511,7 +511,7 @@ class QueryBuilder<T> {
     `,
     image:
       "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    date: "2024-01-25",
+    date: "2024-04-25",
     readTime: "9 min",
     category: "TypeScript",
   },
@@ -790,8 +790,1106 @@ function App({ children }) {
   `,
     image:
       "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    date: "2024-12-05",
+    date: "2024-05-05",
     readTime: "10 min",
     category: "React",
+  },
+  {
+    id: 6,
+    slug: "nextjs-14-server-actions-app-router-mastery",
+    title:
+      "Next.js 14 Mastery: Server Actions, App Router & Performance Optimization",
+    excerpt:
+      "Comprehensive guide to Next.js 14's revolutionary features including Server Actions, Streaming, and Advanced App Router patterns.",
+    content: `
+    <h2>Next.js 14: The Full-Stack Framework Revolution</h2>
+    <p>Next.js 14 represents a paradigm shift in full-stack development. With Server Actions, Partial Prerendering, and enhanced performance optimizations, it's redefining what's possible with React-based applications.</p>
+
+    <h3>🚀 Server Actions: Full-Stack React Simplified</h3>
+    <p>Server Actions enable you to call server functions directly from client components, eliminating API routes for simple operations.</p>
+
+    <pre><code class="language-javascript">// app/actions/user.ts
+'use server';
+
+import { revalidatePath } from 'next/cache';
+import { db } from '@/lib/db';
+
+export async function updateUserProfile(
+  userId: string,
+  formData: FormData
+) {
+  const name = formData.get('name') as string;
+  const email = formData.get('email') as string;
+
+  try {
+    await db.user.update({
+      where: { id: userId },
+      data: { name, email }
+    });
+
+    revalidatePath('/profile/[id]', 'page');
+    return { success: true, message: 'Profile updated' };
+  } catch (error) {
+    return { success: false, error: 'Update failed' };
+  }
+}
+
+// app/components/ProfileForm.tsx
+'use client';
+
+import { updateUserProfile } from '@/app/actions/user';
+import { useActionState, useEffect } from 'react';
+
+export function ProfileForm({ userId }: { userId: string }) {
+  const [state, formAction, isPending] = useActionState(
+    async (prevState: any, formData: FormData) => {
+      return await updateUserProfile(userId, formData);
+    },
+    null
+  );
+
+  useEffect(() => {
+    if (state?.success) {
+      // Show success toast
+    }
+  }, [state]);
+
+  return (
+    <form action={formAction} className="space-y-4">
+      <input 
+        name="name" 
+        placeholder="Name" 
+        className="border p-2 rounded w-full"
+      />
+      <input 
+        name="email" 
+        type="email" 
+        placeholder="Email"
+        className="border p-2 rounded w-full"
+      />
+      <button 
+        type="submit" 
+        disabled={isPending}
+        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+      >
+        {isPending ? 'Updating...' : 'Update Profile'}
+      </button>
+      {state?.error && (
+        <p className="text-red-600">{state.error}</p>
+      )}
+    </form>
+  );
+}</code></pre>
+
+    <h3>⚡ Partial Prerendering (PPR): Hybrid Rendering at Scale</h3>
+    <p>PPR combines static and dynamic rendering intelligently, delivering optimal performance for complex applications.</p>
+
+    <pre><code class="language-javascript">// app/products/[id]/page.tsx
+import { Suspense } from 'react';
+import { getProduct, getRelatedProducts } from '@/lib/products';
+import ProductDetails from './components/ProductDetails';
+import RelatedProducts from './components/RelatedProducts';
+import ProductReviews from './components/ProductReviews';
+
+export default async function ProductPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  // Static data - prerendered
+  const product = await getProduct(params.id);
+
+  return (
+    <div className="container mx-auto p-4">
+      {/* Static section */}
+      <ProductDetails product={product} />
+
+      {/* Dynamic sections with Suspense boundaries */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
+        <Suspense fallback={<RelatedProductsSkeleton />}>
+          <RelatedProducts productId={params.id} />
+        </Suspense>
+
+        <div className="lg:col-span-2">
+          <Suspense fallback={<ReviewsSkeleton />}>
+            <ProductReviews productId={params.id} />
+          </Suspense>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// app/components/RelatedProducts.tsx
+export async function RelatedProducts({ productId }: { productId: string }) {
+  // This data is fetched on-demand
+  const relatedProducts = await getRelatedProducts(productId);
+
+  return (
+    <div className="space-y-4">
+      <h3 className="text-xl font-bold">Related Products</h3>
+      <div className="space-y-2">
+        {relatedProducts.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    </div>
+  );
+}</code></pre>
+
+    <h3>📊 Advanced Data Fetching Strategies</h3>
+    <p>Next.js 14 introduces sophisticated caching and data fetching patterns for optimal performance.</p>
+
+    <pre><code class="language-javascript">// lib/data-fetching.ts
+import { unstable_cache } from 'next/cache';
+import { revalidateTag } from 'next/cache';
+
+// Cached database queries
+export const getCachedProducts = unstable_cache(
+  async (category: string) => {
+    console.log('Fetching products from database...');
+    return await db.product.findMany({
+      where: { category },
+      orderBy: { createdAt: 'desc' },
+    });
+  },
+  ['products', 'category'], // Cache key parts
+  {
+    tags: ['products'], // Revalidation tags
+    revalidate: 3600, // 1 hour
+  }
+);
+
+// Time-based revalidation
+export const getPopularProducts = unstable_cache(
+  async () => {
+    return await db.product.findMany({
+      where: {
+        views: { gt: 1000 },
+        createdAt: { gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) },
+      },
+      take: 10,
+    });
+  },
+  ['popular-products'],
+  { revalidate: 1800 } // 30 minutes
+);
+
+// Manual revalidation
+export async function invalidateProductsCache() {
+  revalidateTag('products');
+}</code></pre>
+
+    <h3>🎨 Advanced App Router Patterns</h3>
+    <p>Master complex routing scenarios with parallel routes, intercepting routes, and route groups.</p>
+
+    <pre><code class="language-javascript">// app/(dashboard)/@analytics/page.tsx
+// Parallel route - renders alongside main content
+export default async function AnalyticsDashboard() {
+  const analytics = await getAnalyticsData();
+
+  return (
+    <div className="bg-white rounded-lg shadow p-6">
+      <h3 className="text-lg font-semibold mb-4">Analytics</h3>
+      <div className="space-y-4">
+        <MetricCard title="Visitors" value={analytics.visitors} />
+        <MetricCard title="Conversion" value={analytics.conversion} />
+        <MetricCard title="Revenue" value={analytics.revenue} />
+      </div>
+    </div>
+  );
+}
+
+// app/products/[id]/@modal/(.)edit/page.tsx
+// Intercepting route - modal overlay
+export default function EditProductModal({
+  params,
+}: {
+  params: { id: string };
+}) {
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+      <div className="bg-white rounded-lg p-6 max-w-md w-full">
+        <EditProductForm productId={params.id} />
+      </div>
+    </div>
+  );
+}
+
+// app/api/upload/route.ts
+// Streaming file uploads
+export async function POST(request: Request) {
+  const formData = await request.formData();
+  const file = formData.get('file') as File;
+
+  const uploadStream = createWriteStream(\`./uploads/\${file.name}\`);
+
+  // Stream the file content
+  const reader = file.stream().getReader();
+  
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    uploadStream.write(value);
+  }
+  
+  uploadStream.end();
+
+  return Response.json({ success: true });
+}</code></pre>
+
+    <h3>🔧 Performance Monitoring & Optimization</h3>
+    <p>Advanced techniques for monitoring and optimizing Next.js applications.</p>
+
+    <pre><code class="language-javascript">// app/layout.tsx
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>
+        {children}
+        <SpeedInsights />
+        <Analytics />
+      </body>
+    </html>
+  );
+}
+
+// middleware.ts - Advanced caching and security
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+export function middleware(request: NextRequest) {
+  const response = NextResponse.next();
+
+  // Security headers
+  response.headers.set('X-Frame-Options', 'DENY');
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+
+  // Cache static assets
+  if (request.nextUrl.pathname.startsWith('/_next/static')) {
+    response.headers.set(
+      'Cache-Control',
+      'public, max-age=31536000, immutable'
+    );
+  }
+
+  // API response caching
+  if (request.nextUrl.pathname.startsWith('/api/')) {
+    response.headers.set('Cache-Control', 's-maxage=60, stale-while-revalidate=30');
+  }
+
+  return response;
+}</code></pre>
+
+    <h2>Vercel Integration & Deployment</h2>
+    <p>Leverage Vercel's platform for optimal Next.js 14 deployments.</p>
+
+    <pre><code class="language-javascript">// vercel.json
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "regions": ["fra1"], // Frankfurt for EU users
+  "env": {
+    "DATABASE_URL": "@database_url"
+  },
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_ANALYTICS_ID": "@analytics_id"
+    }
+  },
+  "git": {
+    "deploymentEnabled": {
+      "main": true,
+      "preview": true
+    }
+  }
+}
+
+// next.config.js
+const nextConfig = {
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '2mb',
+    },
+    ppr: true,
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.unsplash.com',
+      },
+    ],
+  },
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
+  poweredByHeader: false,
+  compress: true,
+};
+
+module.exports = nextConfig;</code></pre>
+
+    <h2>Conclusion</h2>
+    <p>Next.js 14 represents the pinnacle of full-stack React development. With Server Actions eliminating API boilerplate, Partial Prerendering delivering unprecedented performance, and advanced routing patterns enabling complex application architectures, it's never been easier to build production-ready applications.</p>
+  `,
+    image:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    date: "2024-06-15",
+    readTime: "12 min",
+    category: "Next.js",
+  },
+  {
+    id: 7,
+    slug: "ai-modern-web-apps-vercel-openai",
+    title: "AI Integration: Vercel AI SDK & OpenAI for Web Apps",
+    excerpt:
+      "Build AI-powered web applications with Vercel AI SDK, OpenAI, and real-time streaming for modern user experiences.",
+    content: `
+    <h2>AI in Web Applications</h2>
+    <p>Learn how to integrate AI features into your web applications using modern tools and best practices.</p>
+
+    <h3>Vercel AI SDK Setup</h3>
+    <p>Getting started with Vercel AI SDK for unified AI interactions.</p>
+
+    <pre><code class="language-javascript">// Install dependencies
+// npm install ai openai @ai-sdk/react
+
+// lib/ai/config.js
+import { OpenAI } from 'openai';
+
+export const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});</code></pre>
+
+    <h3>Simple Chat Interface</h3>
+    <p>Create a basic AI chat interface with streaming responses.</p>
+
+    <pre><code class="language-javascript">// app/api/chat/route.js
+import { openai } from '@/lib/ai/config';
+import { OpenAIStream, StreamingTextResponse } from 'ai';
+
+export async function POST(req) {
+  const { messages } = await req.json();
+
+  const response = await openai.chat.completions.create({
+    model: 'gpt-3.5-turbo',
+    messages,
+    stream: true,
+  });
+
+  const stream = OpenAIStream(response);
+  return new StreamingTextResponse(stream);
+}
+
+// app/components/Chat.jsx
+'use client';
+
+import { useChat } from 'ai/react';
+
+export function Chat() {
+  const { messages, input, handleInputChange, handleSubmit } = useChat();
+
+  return (
+    <div className="flex flex-col h-[500px] border rounded-lg">
+      <div className="flex-1 p-4 overflow-y-auto">
+        {messages.map(m => (
+          <div key={m.id} className="mb-2">
+            <strong>{m.role}:</strong> {m.content}
+          </div>
+        ))}
+      </div>
+      
+      <form onSubmit={handleSubmit} className="p-4 border-t">
+        <input
+          value={input}
+          onChange={handleInputChange}
+          placeholder="Type your message..."
+          className="w-full border p-2 rounded"
+        />
+        <button type="submit" className="mt-2 bg-blue-500 text-white px-4 py-2 rounded">
+          Send
+        </button>
+      </form>
+    </div>
+  );
+}</code></pre>
+
+    <h3>AI-Powered Form Generation</h3>
+    <p>Generate forms dynamically based on user descriptions.</p>
+
+    <pre><code class="language-javascript">// app/api/generate-form/route.js
+import { openai } from '@/lib/ai/config';
+
+export async function POST(req) {
+  const { description } = await req.json();
+
+  const response = await openai.chat.completions.create({
+    model: 'gpt-3.5-turbo',
+    messages: [{
+      role: 'user',
+      content: \`Create a form for: \${description}. Return JSON with fields array.\`
+    }],
+  });
+
+  return Response.json({ 
+    form: JSON.parse(response.choices[0].message.content) 
+  });
+}</code></pre>
+
+    <h3>Rate Limiting for AI Endpoints</h3>
+    <p>Protect your AI endpoints from abuse with rate limiting.</p>
+
+    <pre><code class="language-javascript">// lib/rate-limit.js
+export class RateLimiter {
+  constructor(maxRequests, windowMs) {
+    this.maxRequests = maxRequests;
+    this.windowMs = windowMs;
+    this.requests = new Map();
+  }
+
+  check(ip) {
+    const now = Date.now();
+    const userRequests = this.requests.get(ip) || [];
+    
+    // Remove old requests
+    const validRequests = userRequests.filter(time => now - time < this.windowMs);
+    
+    if (validRequests.length >= this.maxRequests) {
+      return false; // Rate limited
+    }
+    
+    validRequests.push(now);
+    this.requests.set(ip, validRequests);
+    return true;
+  }
+}</code></pre>
+
+    <h3>Environment Configuration</h3>
+    <p>Set up proper environment variables for AI services.</p>
+
+    <pre><code class="language-bash"># .env.local
+OPENAI_API_KEY=your_key_here
+NEXT_PUBLIC_AI_ENABLED=true
+AI_MAX_TOKENS=1000
+AI_TEMPERATURE=0.7</code></pre>
+
+    <h2>Best Practices</h2>
+    <ul>
+      <li>Always validate user input before sending to AI</li>
+      <li>Implement proper error handling</li>
+      <li>Use streaming for better UX</li>
+      <li>Cache common AI responses</li>
+      <li>Monitor API usage and costs</li>
+    </ul>
+
+    <p>AI integration can transform your web applications, making them more interactive and intelligent.</p>
+  `,
+    image:
+      "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    date: "2025-01-10",
+    readTime: "6 min",
+    category: "AI",
+  },
+
+  {
+    id: 8,
+    slug: "tailwind-css-mastery-advanced-patterns-best-practices",
+    title:
+      "Tailwind CSS Mastery: Advanced Patterns, Performance & Best Practices",
+    excerpt:
+      "Go beyond the basics with advanced Tailwind CSS techniques, performance optimization, and production-ready patterns for 2024.",
+    content: `
+    <h2>Beyond Utility Classes: Advanced Tailwind CSS Mastery</h2>
+    <p>Tailwind CSS has evolved from a simple utility-first framework to a comprehensive design system. Let's explore advanced patterns that will elevate your styling skills to professional level.</p>
+
+    <h3>🚀 Advanced Configuration & Customization</h3>
+    <p>Tailwind's true power lies in its extensibility. Customize it to match your design system perfectly.</p>
+
+    <pre><code class="language-javascript">// tailwind.config.js - Advanced configuration
+module.exports = {
+  darkMode: ['class', '[data-theme="dark"]'], // Multiple dark mode strategies
+  content: [
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      // Advanced color system with semantic names
+      colors: {
+        primary: {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          // ... up to 900
+          DEFAULT: '#3b82f6', // primary
+          dark: '#1d4ed8',    // primary-dark
+        },
+        semantic: {
+          success: '#10b981',
+          warning: '#f59e0b',
+          error: '#ef4444',
+          info: '#3b82f6',
+        },
+      },
+      
+      // Advanced spacing scale
+      spacing: {
+        '128': '32rem',
+        '144': '36rem',
+        'screen-sm': '640px',
+        'screen-md': '768px',
+      },
+      
+      // Custom animations
+      animation: {
+        'fade-in': 'fadeIn 0.5s ease-in-out',
+        'slide-in': 'slideIn 0.3s ease-out',
+        'bounce-slow': 'bounce 2s infinite',
+        'spin-slow': 'spin 3s linear infinite',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      },
+      
+      // Keyframes for custom animations
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideIn: {
+          '0%': { transform: 'translateY(-20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+      },
+      
+      // Advanced typography
+      fontSize: {
+        '2xs': '0.625rem', // 10px
+        '3xs': '0.5rem',   // 8px
+        'display-lg': ['4.5rem', { lineHeight: '1', letterSpacing: '-0.02em' }],
+        'display-md': ['3.75rem', { lineHeight: '1', letterSpacing: '-0.02em' }],
+      },
+      
+      // Container queries support
+      containers: {
+        'xs': '20rem',
+        'sm': '24rem',
+        'md': '28rem',
+        'lg': '32rem',
+      },
+    },
+  },
+  
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/container-queries'),
+    
+    // Custom plugin for advanced utilities
+    function({ addUtilities, theme }) {
+      const newUtilities = {
+        '.text-balance': {
+          textWrap: 'balance',
+        },
+        '.text-pretty': {
+          textWrap: 'pretty',
+        },
+        '.glass-effect': {
+          background: 'rgba(255, 255, 255, 0.1)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
+        },
+        '.scrollbar-hide': {
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
+        },
+      };
+      addUtilities(newUtilities);
+    },
+  ],
+};</code></pre>
+
+    <h3>🎨 Advanced Layout Patterns</h3>
+    <p>Master complex layouts with advanced Grid and Flexbox patterns.</p>
+
+    <pre><code class="language-html">&lt;!-- Advanced Grid Layouts --&gt;
+&lt;div class="grid grid-cols-12 gap-4 md:gap-6 lg:gap-8"&gt;
+  &lt;!-- Sidebar with responsive behavior --&gt;
+  &lt;aside class="col-span-12 md:col-span-3 lg:col-span-2 
+                sticky top-0 h-screen overflow-y-auto 
+                scrollbar-hide bg-gray-50 dark:bg-gray-900"&gt;
+    &lt;!-- Sidebar content --&gt;
+  &lt;/aside&gt;
+  
+  &lt;!-- Main content area --&gt;
+  &lt;main class="col-span-12 md:col-span-9 lg:col-span-8 
+               space-y-6 md:space-y-8"&gt;
+    &lt;!-- Hero section with complex grid --&gt;
+    &lt;section class="grid grid-cols-1 lg:grid-cols-2 gap-6 
+                    items-center min-h-[80vh]"&gt;
+      &lt;div class="space-y-4"&gt;
+        &lt;h1 class="text-4xl md:text-5xl lg:text-6xl 
+                   font-bold tracking-tight"&gt;
+          Advanced Tailwind
+        &lt;/h1&gt;
+        &lt;p class="text-lg text-gray-600 dark:text-gray-300"&gt;
+          Master complex layouts
+        &lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="relative"&gt;
+        &lt;div class="absolute inset-0 bg-gradient-to-r 
+                     from-blue-500 to-purple-500 
+                     rounded-2xl transform rotate-3"&gt;&lt;/div&gt;
+        &lt;div class="relative bg-white dark:bg-gray-800 
+                     p-8 rounded-2xl shadow-2xl"&gt;
+          &lt;!-- Content --&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+  
+  &lt;!-- Right sidebar --&gt;
+  &lt;aside class="hidden lg:block col-span-2 
+                space-y-4"&gt;
+    &lt;!-- Widgets --&gt;
+  &lt;/aside&gt;
+&lt;/div&gt;
+
+&lt;!-- Masonry Layout with columns --&gt;
+&lt;div class="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4"&gt;
+  &lt;div class="break-inside-avoid bg-white dark:bg-gray-800 
+              rounded-lg p-4 shadow-lg"&gt;
+    &lt;!-- Card content --&gt;
+  &lt;/div&gt;
+  &lt;!-- More cards --&gt;
+&lt;/div&gt;
+
+&lt;!-- Advanced Flexbox patterns --&gt;
+&lt;div class="flex flex-col md:flex-row gap-4 items-stretch"&gt;
+  &lt;div class="flex-1 flex flex-col"&gt;
+    &lt;div class="flex-1 bg-gray-100 dark:bg-gray-800 
+                rounded-lg p-4"&gt;
+      Content that stretches
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="flex-none w-full md:w-64 
+              flex flex-col justify-between"&gt;
+    &lt;!-- Fixed width sidebar --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <h3>⚡ Performance Optimization</h3>
+    <p>Optimize Tailwind CSS for production with these advanced techniques.</p>
+
+    <pre><code class="language-javascript">// PostCSS configuration for optimization
+// postcss.config.js
+module.exports = {
+  plugins: {
+    'tailwindcss/nesting': {}, // Enable nesting
+    tailwindcss: {},
+    autoprefixer: {},
+    
+    // Production optimizations
+    ...(process.env.NODE_ENV === 'production'
+      ? {
+          '@fullhuman/postcss-purgecss': {
+            content: [
+              './src/**/*.{js,ts,jsx,tsx}',
+              './app/**/*.{js,ts,jsx,tsx}',
+            ],
+            safelist: [
+              /^bg-/,      // Keep all background colors
+              /^text-/,    // Keep all text colors
+              /^border-/,  // Keep all border colors
+              /^hover:/,   // Keep hover states
+              /^focus:/,   // Keep focus states
+              /^dark:/,    // Keep dark mode variants
+            ],
+            defaultExtractor: content => 
+              content.match(/[\\w\\-:\\/]+/g) || [],
+          },
+          'cssnano': {
+            preset: ['default', {
+              discardComments: { removeAll: true },
+              normalizeWhitespace: false,
+            }],
+          },
+        }
+      : {}),
+  },
+};
+
+// Advanced JIT mode configuration
+// tailwind.config.js - Optimized for JIT
+module.exports = {
+  mode: 'jit', // Just-in-Time mode
+  purge: {
+    content: ['./src/**/*.{js,ts,jsx,tsx}'],
+    
+    // Advanced extraction patterns
+    options: {
+      safelist: [
+        'bg-blue-500',
+        'text-red-500',
+        // Dynamic class patterns
+        /^bg-(red|blue|green)-(100|500|900)$/,
+        /^text-(xs|sm|base|lg|xl)$/,
+        /^grid-cols-(1|2|3|4)$/,
+      ],
+      
+      // Extract classes from dynamic strings
+      extractors: [
+        {
+          extractor: (content) => 
+            content.match(/[\\w\\-:\\/]+/g) || [],
+          extensions: ['js', 'jsx', 'ts', 'tsx'],
+        },
+      ],
+    },
+  },
+  
+  // Optimize for tree-shaking
+  corePlugins: {
+    // Disable unused core plugins
+    float: false,
+    clear: false,
+    skew: false,
+  },
+};</code></pre>
+
+    <h3>🎭 Advanced Responsive & State Variants</h3>
+    <p>Master responsive design with advanced breakpoints and state management.</p>
+
+    <pre><code class="language-html">&lt;!-- Advanced responsive patterns --&gt;
+&lt;div class="
+  /* Mobile first */
+  flex flex-col gap-2 p-4
+  
+  /* Small screens */
+  sm:flex-row sm:gap-4 sm:p-6
+  
+  /* Medium screens */
+  md:grid md:grid-cols-2 md:gap-6 md:p-8
+  
+  /* Large screens */
+  lg:grid-cols-3 lg:gap-8 lg:p-10
+  
+  /* Extra large */
+  xl:grid-cols-4 xl:gap-10
+  
+  /* 2XL and beyond */
+  2xl:grid-cols-5 2xl:gap-12
+"&gt;
+  &lt;!-- Content adapts to all screen sizes --&gt;
+&lt;/div&gt;
+
+&lt;!-- Container queries with Tailwind --&gt;
+&lt;div class="@container"&gt;
+  &lt;div class="@lg:flex @lg:gap-4"&gt;
+    &lt;!-- Styles change based on container width --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Advanced state variants --&gt;
+&lt;button class="
+  /* Base styles */
+  px-6 py-3 rounded-lg font-medium
+  transition-all duration-300 ease-out
+  
+  /* Default state */
+  bg-blue-500 text-white
+  hover:bg-blue-600 
+  hover:scale-105
+  hover:shadow-lg
+  hover:shadow-blue-500/30
+  
+  /* Active/click state */
+  active:bg-blue-700
+  active:scale-95
+  
+  /* Focus state */
+  focus:outline-none
+  focus:ring-4
+  focus:ring-blue-500/50
+  focus:ring-offset-2
+  
+  /* Disabled state */
+  disabled:opacity-50
+  disabled:cursor-not-allowed
+  disabled:hover:scale-100
+  disabled:hover:bg-blue-500
+  
+  /* Dark mode */
+  dark:bg-blue-600
+  dark:hover:bg-blue-700
+  dark:focus:ring-blue-600/50
+  
+  /* Reduced motion */
+  motion-reduce:transition-none
+  motion-reduce:hover:scale-100
+  
+  /* Print styles */
+  print:text-black
+  print:bg-transparent
+  print:border
+"&gt;
+  Advanced Button
+&lt;/button&gt;
+
+&lt;!-- Group hover states --&gt;
+&lt;div class="group relative"&gt;
+  &lt;div class="
+    opacity-0 
+    group-hover:opacity-100
+    group-focus-within:opacity-100
+    transition-opacity duration-300
+    absolute inset-0 bg-black/50
+  "&gt;&lt;/div&gt;
+  &lt;div class="
+    transform 
+    group-hover:scale-110
+    transition-transform duration-300
+  "&gt;
+    Content
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <h3>🔄 Dynamic Classes & Runtime Styles</h3>
+    <p>Handle dynamic styles safely and efficiently.</p>
+
+    <pre><code class="language-javascript">// React component with dynamic Tailwind classes
+function DynamicCard({ variant = 'default', isLoading = false }) {
+  // Safely build dynamic classes
+  const baseClasses = "p-6 rounded-lg transition-all duration-300";
+  
+  const variantClasses = {
+    default: "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700",
+    primary: "bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800",
+    success: "bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800",
+    error: "bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800",
+  };
+  
+  const stateClasses = isLoading 
+    ? "opacity-50 cursor-wait" 
+    : "hover:shadow-lg hover:-translate-y-1";
+  
+  // Safely combine classes
+  const cardClasses = \`
+    \${baseClasses}
+    \${variantClasses[variant] || variantClasses.default}
+    \${stateClasses}
+  \`.trim();
+  
+  return (
+    <div className={cardClasses}>
+      {isLoading ? (
+        <div className="animate-pulse space-y-3">
+          <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
+          <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
+        </div>
+      ) : (
+        <div>Content</div>
+      )}
+    </div>
+  );
+}
+
+// Utility for safe class concatenation
+function cn(...classes) {
+  return classes.filter(Boolean).join(' ');
+}
+
+// Usage with conditional classes
+function Alert({ type, children }) {
+  return (
+    <div className={cn(
+      "p-4 rounded-lg border",
+      type === 'success' && "bg-green-50 border-green-200 text-green-800",
+      type === 'error' && "bg-red-50 border-red-200 text-red-800",
+      type === 'warning' && "bg-yellow-50 border-yellow-200 text-yellow-800",
+      type === 'info' && "bg-blue-50 border-blue-200 text-blue-800",
+    )}>
+      {children}
+    </div>
+  );
+}</code></pre>
+
+    <h3>🎯 Design Token System with Tailwind</h3>
+    <p>Create a consistent design system using Tailwind's configuration.</p>
+
+    <pre><code class="language-javascript">// design-tokens.js - Centralized design tokens
+export const designTokens = {
+  spacing: {
+    xs: '0.25rem',   // 4px
+    sm: '0.5rem',    // 8px
+    md: '1rem',      // 16px
+    lg: '1.5rem',    // 24px
+    xl: '2rem',      // 32px
+    '2xl': '3rem',   // 48px
+    '3xl': '4rem',   // 64px
+  },
+  
+  borderRadius: {
+    sm: '0.125rem',  // 2px
+    DEFAULT: '0.25rem', // 4px
+    md: '0.375rem',  // 6px
+    lg: '0.5rem',    // 8px
+    xl: '0.75rem',   // 12px
+    '2xl': '1rem',   // 16px
+    full: '9999px',
+  },
+  
+  shadows: {
+    sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+    DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+    md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+    xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+    inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+  },
+  
+  transitions: {
+    DEFAULT: '150ms cubic-bezier(0.4, 0, 0.2, 1)',
+    fast: '100ms cubic-bezier(0.4, 0, 0.2, 1)',
+    slow: '300ms cubic-bezier(0.4, 0, 0.2, 1)',
+  },
+};
+
+// Apply to Tailwind config
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      spacing: designTokens.spacing,
+      borderRadius: designTokens.borderRadius,
+      boxShadow: designTokens.shadows,
+      transitionTimingFunction: {
+        'in-out': designTokens.transitions.DEFAULT,
+      },
+    },
+  },
+};</code></pre>
+
+    <h3>🔧 Advanced Plugin Development</h3>
+    <p>Create custom Tailwind plugins for reusable patterns.</p>
+
+    <pre><code class="language-javascript">// plugins/advanced-utilities.js
+const plugin = require('tailwindcss/plugin');
+
+module.exports = plugin(function({ addUtilities, theme, e }) {
+  const newUtilities = {
+    // Text gradients
+    '.text-gradient': {
+      background: 'linear-gradient(to right, var(--tw-gradient-stops))',
+      '-webkit-background-clip': 'text',
+      '-webkit-text-fill-color': 'transparent',
+      'background-clip': 'text',
+    },
+    
+    // Custom scrollbar
+    '.scrollbar-custom': {
+      '&::-webkit-scrollbar': {
+        width: '8px',
+        height: '8px',
+      },
+      '&::-webkit-scrollbar-track': {
+        background: theme('colors.gray.100'),
+        borderRadius: '4px',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        background: theme('colors.gray.400'),
+        borderRadius: '4px',
+        '&:hover': {
+          background: theme('colors.gray.500'),
+        },
+      },
+    },
+    
+    // Aspect ratio containers
+    '.aspect-card': {
+      aspectRatio: '3 / 4',
+    },
+    '.aspect-banner': {
+      aspectRatio: '16 / 9',
+    },
+    
+    // Advanced positioning
+    '.center-absolute': {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+    },
+    
+    // Glass morphism
+    '.glass': {
+      background: 'rgba(255, 255, 255, 0.1)',
+      backdropFilter: 'blur(10px)',
+      border: '1px solid rgba(255, 255, 255, 0.2)',
+    },
+    
+    // Custom animations
+    '.animate-float': {
+      animation: 'float 3s ease-in-out infinite',
+    },
+  };
+  
+  // Add keyframes for custom animations
+  const keyframes = {
+    float: {
+      '0%, 100%': { transform: 'translateY(0)' },
+      '50%': { transform: 'translateY(-10px)' },
+    },
+  };
+  
+  addUtilities(newUtilities);
+  addUtilities({
+    '@keyframes float': keyframes.float,
+  });
+}, {
+  theme: {
+    extend: {
+      animation: {
+        float: 'float 3s ease-in-out infinite',
+      },
+    },
+  },
+});</code></pre>
+
+    <h2>Best Practices Summary</h2>
+    <ol>
+      <li><strong>Use JIT Mode:</strong> Always enable Just-in-Time mode for optimal performance</li>
+      <li><strong>Extract Components:</strong> Create reusable component classes for repeated patterns</li>
+      <li><strong>Leverage Configuration:</strong> Customize Tailwind to match your design system</li>
+      <li><strong>Optimize for Production:</strong> Use PurgeCSS and minification in production</li>
+      <li><strong>Maintain Consistency:</strong> Establish and follow naming conventions</li>
+      <li><strong>Use Plugins Wisely:</strong> Add plugins only when needed</li>
+      <li><strong>Test Responsiveness:</strong> Test on all breakpoints</li>
+      <li><strong>Accessibility First:</strong> Ensure all styles are accessible</li>
+    </ol>
+
+    <p>Mastering these advanced Tailwind CSS techniques will transform you from a utility class user to a design system architect, capable of building consistent, performant, and maintainable interfaces at scale.</p>
+  `,
+    image:
+      "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    date: "2025-2-15",
+    readTime: "12 min",
+    category: "CSS",
   },
 ];

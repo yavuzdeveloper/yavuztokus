@@ -66,3 +66,57 @@
 .blog-content pre::-webkit-scrollbar-thumb:hover {
   background: #777;
 }
+
+.blog-content .code-container {
+  position: relative;
+  margin: 1.5rem 0;
+  background: #1e1e1e;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #333;
+}
+
+.blog-content .code-container pre {
+  padding: 1rem;
+  margin: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.blog-content .code-container code {
+  font-family: "Fira Code", "Monaco", "Consolas", monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  white-space: pre;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .blog-content .code-container {
+    margin: 1rem -0.5rem;
+    border-radius: 6px;
+  }
+
+  .blog-content .code-container pre {
+    padding: 0.75rem;
+  }
+
+  .blog-content .code-container code {
+    font-size: 0.8125rem;
+  }
+}
+
+/* Scrollbar */
+.blog-content .code-container pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.blog-content .code-container pre::-webkit-scrollbar-track {
+  background: #2d2d2d;
+  border-radius: 4px;
+}
+
+.blog-content .code-container pre::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 4px;
+}
