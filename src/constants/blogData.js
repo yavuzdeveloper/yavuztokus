@@ -1892,4 +1892,446 @@ module.exports = plugin(function({ addUtilities, theme, e }) {
     readTime: "12 min",
     category: "CSS",
   },
+  {
+    id: 9,
+    slug: "ai-with-tanstack-query-react",
+    title: "AI Integration with TanStack Query for React Applications",
+    excerpt:
+      "Leverage TanStack Query to manage AI data fetching and caching in React apps efficiently.",
+    content: `
+    <h2>Why TanStack Query for AI?</h2>
+    <p>Using AI models often involves network requests for generating responses. 
+    TanStack Query simplifies fetching, caching, and managing server state in React applications, 
+    making AI integration more efficient and reactive.</p>
+
+    <h3>Installing Dependencies</h3>
+    <pre><code class="language-bash">// Install required packages
+npm install @tanstack/react-query openai</code></pre>
+
+    <h3>Setting Up OpenAI Client</h3>
+    <pre><code class="language-javascript">// lib/openai.js
+import { OpenAI } from "openai";
+
+export const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});</code></pre>
+
+    <h3>Using TanStack Query for AI Requests</h3>
+    <pre><code class="language-javascript">// hooks/useAIResponse.js
+import { useQuery } from "@tanstack/react-query";
+import { openai } from "@/lib/openai";
+
+export const useAIResponse = (prompt) => {
+  return useQuery(
+    ["aiResponse", prompt],
+    async () => {
+      const response = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [{ role: "user", content: prompt }],
+      });
+      return response.choices[0].message.content;
+    },
+    {
+      enabled: !!prompt, // only fetch if prompt exists
+      staleTime: 1000 * 60 * 5, // cache for 5 minutes
+    }
+  );
+};</code></pre>
+
+    <h3>AI Chat Component</h3>
+    <pre><code class="language-javascript">// components/AIChat.jsx
+'use client';
+import { useState } from "react";
+import { useAIResponse } from "@/hooks/useAIResponse";
+
+export function AIChat() {
+  const [prompt, setPrompt] = useState("");
+  const { data, isLoading, refetch } = useAIResponse(prompt);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    refetch();
+  };
+
+  return (
+    <div className="flex flex-col h-[500px] border rounded-lg p-4">
+      <form onSubmit={handleSubmit} className="mb-4">
+        <input
+          type="text"
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+          placeholder="Ask something..."
+          className="border p-2 rounded w-full"
+        />
+        <button type="submit" className="mt-2 bg-blue-500 text-white px-4 py-2 rounded">
+          Send
+        </button>
+      </form>
+
+      <div className="flex-1 overflow-y-auto">
+        {isLoading ? <p>Loading...</p> : <p>{data}</p>}
+      </div>
+    </div>
+  );
+}</code></pre>
+
+    <h3>Best Practices</h3>
+    <ul>
+      <li>Use TanStack Query caching to reduce repeated AI requests</li>
+      <li>Handle errors with onError or error boundaries</li>
+      <li>Throttle or debounce user input to limit API calls</li>
+      <li>Store API keys in environment variables and never commit them</li>
+    </ul>
+
+    <p>Combining TanStack Query with AI APIs allows React developers to build highly responsive 
+    and efficient AI-powered applications.</p>
+  `,
+    image:
+      "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    date: "2025-9-15",
+    readTime: "5 min",
+    category: "AI",
+  },
+
+  {
+    id: 10,
+    slug: "getting-started-with-shadcn-ui",
+    title: "Getting Started with ShadCN/UI for React Applications",
+    excerpt:
+      "Learn how to build clean, accessible, and customizable UI components using ShadCN/UI in React.",
+    content: `
+    <h2>What is ShadCN/UI?</h2>
+    <p>ShadCN/UI is a modern React component library built on top of Radix UI and TailwindCSS. 
+    It provides ready-made, accessible, and highly customizable UI components for React applications.</p>
+
+    <h3>Installing ShadCN/UI</h3>
+    <pre><code class="language-bash">// Install core dependencies
+npm install @shadcn/ui @radix-ui/react-primitive tailwindcss
+</code></pre>
+
+    <h3>Using a Button Component</h3>
+    <pre><code class="language-javascript">// components/MyButton.jsx
+import { Button } from '@shadcn/ui';
+
+export function MyButton({ label, onClick }) {
+  return (
+    <Button variant="default" onClick={onClick}>
+      {label}
+    </Button>
+  );
+}
+</code></pre>
+
+    <h3>Creating a Dialog Modal</h3>
+    <pre><code class="language-javascript">// components/MyModal.jsx
+import { Dialog, DialogContent, DialogTrigger } from '@shadcn/ui';
+
+export function MyModal() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button className="bg-blue-500 text-white px-4 py-2 rounded">
+          Open Modal
+        </button>
+      </DialogTrigger>
+
+      <DialogContent className="p-4 rounded border">
+        <h2 className="text-lg font-bold mb-2">Hello from ShadCN/UI!</h2>
+        <p>This is a responsive and accessible modal component.</p>
+      </DialogContent>
+    </Dialog>
+  );
+}
+</code></pre>
+
+    <h3>Customizing Components</h3>
+    <p>All ShadCN/UI components support TailwindCSS classes and variants:</p>
+    <pre><code class="language-javascript">// Example: Custom button
+<Button variant="destructive" className="bg-red-600 hover:bg-red-700">
+  Delete
+</Button>
+</code></pre>
+
+    <h3>Best Practices</h3>
+    <ul>
+      <li>Use TailwindCSS to customize spacing, colors, and typography</li>
+      <li>Always wrap interactive elements with accessible wrappers like DialogTrigger or PopoverTrigger</li>
+      <li>Combine ShadCN/UI components with state management libraries for dynamic behavior</li>
+      <li>Keep your UI consistent by using component variants</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>ShadCN/UI makes it easy to build **clean, responsive, and accessible React interfaces** quickly. 
+    Whether you need buttons, modals, or complex dialogs, ShadCN/UI gives you the building blocks with minimal boilerplate.</p>
+  `,
+    image:
+      "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=800&q=80",
+    date: "2025-10-10",
+    readTime: "5 min",
+    category: "UI",
+  },
+
+  {
+    id: 11,
+    slug: "complete-guide-tanstack-query-react",
+    title: "The Complete Guide to TanStack Query in React",
+    excerpt:
+      "A full beginner-to-advanced guide to fetching, caching, and managing server state in React applications using TanStack Query.",
+    content: `
+    <h2>Introduction</h2>
+    <p><strong>TanStack Query</strong> (formerly React Query) is the most powerful and efficient library for handling 
+    asynchronous server state in React. Instead of manually managing loading states, caching, refetching, or syncing UI with server data,
+    TanStack Query handles everything automatically with a declarative API.</p>
+
+    <p>In this guide, you'll learn both:</p>
+    <ul>
+      <li><strong>How to get started</strong> with fetching and caching data using <code>useQuery</code></li>
+      <li><strong>Advanced server-state techniques</strong> like mutations, background updates, and DevTools</li>
+    </ul>
+
+    <h2>What is Server State?</h2>
+    <p>Server state represents data fetched from a backend or API. It is shared, asynchronous, cacheable, and needs to stay synced across the UI.
+    Traditional solutions like Redux or MobX work best for client state, but are overkill and repetitive for server state. 
+    TanStack Query focuses purely on server state, simplifying your architecture dramatically.</p>
+
+    <h2>Why Use TanStack Query?</h2>
+    <ul>
+      <li><strong>Automatic caching</strong> with stale/refresh logic</li>
+      <li><strong>Automatic refetching</strong> on tab focus, reconnect, or intervals</li>
+      <li><strong>Declarative hooks</strong> like <code>useQuery</code> and <code>useMutation</code></li>
+      <li><strong>Error & loading states built-in</strong></li>
+      <li><strong>Supports SSR</strong> with frameworks like Next.js</li>
+      <li><strong>Great DevTools</strong> for debugging</li>
+    </ul>
+
+    <h2>Installing TanStack Query</h2>
+    <pre><code class="language-bash">npm install @tanstack/react-query</code></pre>
+
+    <h2>Setting Up QueryClient</h2>
+    <p>Before using TanStack Query hooks, wrap your app with <code>QueryClientProvider</code>:</p>
+
+    <pre><code class="language-javascript">// app/providers/QueryProvider.jsx
+'use client';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
+
+export function Providers({ children }) {
+  return (
+    <QueryClientProvider client={queryClient}>
+      {children}
+    </QueryClientProvider>
+  );
+}
+</code></pre>
+
+    <h2>Fetching Data with useQuery</h2>
+    <p>The <code>useQuery</code> hook handles fetching, caching, and updating data automatically.</p>
+
+    <pre><code class="language-javascript">// components/UserList.jsx
+'use client';
+import { useQuery } from '@tanstack/react-query';
+
+async function fetchUsers() {
+  const res = await fetch('https://jsonplaceholder.typicode.com/users');
+  if (!res.ok) throw new Error('Network error');
+  return res.json();
+}
+
+export function UserList() {
+  const { data, isLoading, error } = useQuery(['users'], fetchUsers);
+
+  if (isLoading) return <p>Loading users...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  return (
+    <ul>
+      {data.map(user => (<li key={user.id}>{user.name}</li>))}
+    </ul>
+  );
+}
+</code></pre>
+
+    <h2>Automatic Background Refresh</h2>
+    <p>TanStack Query can refetch data automatically on intervals:</p>
+
+    <pre><code class="language-javascript">useQuery(['users'], fetchUsers, {
+  refetchInterval: 10000, // every 10 seconds
+  refetchOnWindowFocus: true,
+});
+</code></pre>
+
+    <h2>Mutations for Creating or Editing Data</h2>
+    <p>To update server data (POST / PUT / DELETE) use <code>useMutation</code>:</p>
+
+    <pre><code class="language-javascript">// AddUser.jsx
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+export function AddUser() {
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation(
+    newUser =>
+      fetch('/api/users', {
+        method: 'POST',
+        body: JSON.stringify(newUser),
+      }),
+    {
+      onSuccess: () => {
+        // Automatically refresh users after adding
+        queryClient.invalidateQueries(['users']);
+      },
+    }
+  );
+
+  return (
+    <button onClick={() => mutation.mutate({ name: 'John Doe' })}>
+      Add User
+    </button>
+  );
+}
+</code></pre>
+
+    <h2>Using DevTools</h2>
+    <pre><code class="language-bash">npm install @tanstack/react-query-devtools</code></pre>
+
+    <pre><code class="language-javascript">// App.jsx
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+function App() {
+  return (
+    <>
+      {/* App Components */}
+      <ReactQueryDevtools initialIsOpen={false} />
+    </>
+  );
+}
+</code></pre>
+
+    <h2>Best Practices</h2>
+    <ul>
+      <li>Use descriptive query keys like <code>['user', id]</code></li>
+      <li>Keep queries focused on one dataset</li>
+      <li>Use <code>invalidateQueries</code> after mutations</li>
+      <li>Don’t over-fetch—use caching and stale times wisely</li>
+      <li>Prefer small composable fetchers over large all-in-one APIs</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>TanStack Query makes server state management fast, scalable, and reliable. From basic fetching to advanced cache invalidation and DevTools support, it dramatically improves data handling in React apps and removes the need for manual loading states or Redux boilerplate.</p>
+  `,
+    image:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
+    date: "2025-11-15",
+    readTime: "10 min",
+    category: "React",
+  },
+
+  {
+    id: 12,
+    slug: "react-forms-with-formik",
+    title: "How to Build React Forms with Formik",
+    excerpt:
+      "Learn how to efficiently create and manage forms in React using the Formik library.",
+    content: `
+    <h2>Introduction</h2>
+    <p>Form building in React can be complex, requiring state management, validation, and error handling. 
+    <strong>Formik</strong> simplifies this process with an intuitive API and built-in validation.</p>
+
+    <h2>What is Formik?</h2>
+    <p><a href="https://formik.org/" target="_blank">Formik</a> is an open-source library for building and managing forms in React. 
+    It provides components and utilities to handle form data, validation, and submission efficiently.</p>
+
+    <h3>Traditional Form Handling in React</h3>
+    <pre><code class="language-javascript">
+import { useState } from "react";
+
+function InputForm() {
+  const [input1, setInput1] = useState("");
+  const [input2, setInput2] = useState("");
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    if (name === "input1") setInput1(value);
+    else if (name === "input2") setInput2(value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log({ input1, input2 });
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input name="input1" value={input1} onChange={handleInputChange} />
+      <input name="input2" value={input2} onChange={handleInputChange} />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+export default InputForm;
+    </code></pre>
+
+    <h3>Using Formik</h3>
+    <p>Formik handles state, validation, and submission internally. You only need to import its components:</p>
+    <pre><code class="language-javascript">
+import { Formik, Form, Field, ErrorMessage } from "formik";
+
+<Formik
+  initialValues={{ fullname: "", email: "", password: "" }}
+  validate={values => {
+    const errors = {};
+    if (!values.fullname) errors.fullname = "Required";
+    if (!values.email) {
+      errors.email = "Required";
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$/i.test(values.email)
+    ) {
+      errors.email = "Invalid email address";
+    }
+    if (!values.password) errors.password = "Required";
+    return errors;
+  }}
+  onSubmit={(values, { setSubmitting }) => {
+    setTimeout(() => {
+      alert(JSON.stringify(values, null, 2));
+      setSubmitting(false);
+    }, 400);
+  }}
+>
+  {({ isSubmitting }) => (
+    <Form>
+      <Field type="text" name="fullname" placeholder="Enter your fullname" />
+      <ErrorMessage name="fullname" component="div" />
+
+      <Field type="email" name="email" placeholder="Enter your email" />
+      <ErrorMessage name="email" component="div" />
+
+      <Field type="password" name="password" placeholder="Enter password" />
+      <ErrorMessage name="password" component="div" />
+
+      <button type="submit" disabled={isSubmitting}>Submit</button>
+    </Form>
+  )}
+</Formik>
+    </code></pre>
+
+    <h3>Benefits of Using Formik</h3>
+    <ul>
+      <li>Automatically manages form state and input values</li>
+      <li>Built-in validation and error messages</li>
+      <li>Supports complex forms with nested fields</li>
+      <li>Integrates easily with UI libraries like Material-UI, Chakra UI, or Tailwind CSS</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>Formik simplifies React form development by handling state, validation, and submission efficiently. 
+    You can focus on building great user experiences instead of writing repetitive boilerplate code.</p>
+  `,
+    image:
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
+    date: "2025-12-01",
+    readTime: "6 min",
+    category: "React Forms",
+  },
 ];

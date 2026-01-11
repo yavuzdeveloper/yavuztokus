@@ -1,4 +1,3 @@
-import React from "react";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -29,6 +28,7 @@ const ExperienceCard = ({ experience }) => {
             src={experience.imageUrl || experience.icon}
             alt={experience.company_name}
             className="w-[60%] h-[60%] object-contain"
+            onError={e => (e.target.src = experience.icon)}
           />
         </div>
       }

@@ -19,6 +19,8 @@ import {
   modernArtCollection,
   threejs,
   nextjs,
+  AILanguage,
+  yavuzAIAgent,
 } from "../assets";
 
 export const navLinks = [
@@ -149,6 +151,7 @@ const experiences = [
     company_url: "https://boutiquerugs.com/",
     imageUrl:
       "https://boutiquerugs.com/cdn/shop/t/343/assets/br_footer_logo_medium.png?v=59094383317375050561743243961",
+
     icon: web,
     iconBg: "#fbc3bc",
     date: "Feb 2022 - Sep 2023",
@@ -255,9 +258,61 @@ const projects = [
     liveLink: "https://artwork-app-wine.vercel.app/",
   },
   {
+    name: "Yavuz AI Assistant",
+    description:
+      "A personal AI assistant built with Next.js 15 and Vercel AI SDK, offering real-time chat, chat history, context awareness, and a modern UI with Tailwind CSS and shadcn/ui.",
+    tags: [
+      {
+        name: "Next.js",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "TypeScript",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Vercel AI SDK",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Tailwind",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: yavuzAIAgent,
+    sourceCodeLink: "https://github.com/yavuzdeveloper/yavuz-ai",
+    liveLink: "https://yavuz-ai-lime.vercel.app/",
+  },
+  {
+    name: "British English Tutor",
+    description:
+      "An interactive British English learning assistant built with Next.js 15 and the Vercel AI SDK, offering grammar correction, vocabulary explanations, and real-time conversations.",
+    tags: [
+      {
+        name: "Next.js",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "TypeScript",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Vercel AI SDK",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Tailwind",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: AILanguage,
+    sourceCodeLink: "https://github.com/yavuzdeveloper/lang-ai",
+    liveLink: "https://lang-ai-nine.vercel.app/",
+  },
+  {
     name: "Pricing Cards",
     description:
-      "A responsive pricing page featuring three-tier plans, built with Context API for state management. Includes dark/light mode toggle and flawless mobile-to-desktop adaptation.",
+      "A responsive pricing page featuring three-tier plans, built with Context API for state management. Includes dark/light mode toggle and flawless user experience.",
     tags: [
       {
         name: "React.js",

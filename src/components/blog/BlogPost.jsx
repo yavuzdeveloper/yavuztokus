@@ -48,10 +48,7 @@ const BlogPost = () => {
   }, [slug, navigate]);
 
   // Handle back to blog list
-  const handleBackToList = () => {
-    navigate("/blog");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const handleBackToList = () => window.history.back();
 
   // Loading state
   if (loading) {

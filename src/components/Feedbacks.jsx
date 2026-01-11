@@ -5,6 +5,7 @@ import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 import { testimonials } from "../constants";
+import user from "../assets/user.png";
 
 export const ServiceCard = ({ index, title, icon }) => (
   <Tilt className="xs:w-[250px] w-full">
@@ -59,11 +60,13 @@ const FeedbackCard = ({
               {designation} of {company}
             </p>
           </div>
-
           <img
-            src={image}
+            src={image || user}
             alt={`feedback_by-${name}`}
             className="w-10 h-10 rounded-full object-cover"
+            onError={e => {
+              e.currentTarget.src = user;
+            }}
           />
         </div>
       </div>

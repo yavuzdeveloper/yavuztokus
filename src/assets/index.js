@@ -23,6 +23,8 @@ import modernArtCollection from "./modernArtCollection.webp";
 import paperRockScissors from "./paperRockScissors.webp";
 import pricingPage from "./pricingPage.webp";
 import computer from "./computer.webp";
+import AILanguage from "./AILanguage.png";
+import yavuzAIAgent from "./yavuzAIAgent.png";
 
 export {
   backend,
@@ -49,4 +51,6 @@ export {
   pricingPage,
   modernArtCollection,
   computer,
+  AILanguage,
+  yavuzAIAgent,
 };
