@@ -6,10 +6,10 @@ export const blogPosts = [
     excerpt:
       "Deep understanding of when and how to use CSS Grid and Flexbox with advanced techniques and real-world layout examples.",
     content: `
-      <h2>Mastering Modern CSS Layout Systems</h2>
+       <h2 style="margin-top: 2rem;">Mastering Modern CSS Layout Systems</h2>
       <p>CSS Grid and Flexbox represent two different approaches to layout, each excelling in specific scenarios. Understanding their strengths is key to creating robust, maintainable layouts.</p>
       
-      <h3>CSS Grid: Two-Dimensional Powerhouse</h3>
+       <h3 style="margin-top: 1rem;">CSS Grid: Two-Dimensional Powerhouse</h3>
       <p>Grid is designed for two-dimensional layouts, making it ideal for overall page structure and complex component layouts.</p>
       
       <pre><code class="language-css">/* Advanced Grid layout with named areas */
@@ -31,7 +31,7 @@ export const blogPosts = [
 .sidebar2 { grid-area: sidebar2; }
 .footer { grid-area: footer; }</code></pre>
       
-      <h3>Flexbox: One-Dimensional Precision</h3>
+       <h3 style="margin-top: 1rem;">Flexbox: One-Dimensional Precision</h3>
       <p>Flexbox excels at one-dimensional layouts and is perfect for component-level alignment and distribution.</p>
       
       <pre><code class="language-css">/* Complex card layout with Flexbox */
@@ -69,10 +69,10 @@ export const blogPosts = [
     excerpt:
       "Master modern JavaScript array methods with real-world examples and performance considerations for enterprise applications.",
     content: `
-      <h2>Elevating Your Array Manipulation Skills</h2>
+       <h2 style="margin-top: 2rem;">Elevating Your Array Manipulation Skills</h2>
       <p>JavaScript arrays are more powerful than ever with ES6+ features. Understanding these methods deeply can significantly improve your code quality and performance.</p>
       
-      <h3>Array.map(): Transformative Power</h3>
+       <h3 style="margin-top: 1rem;">Array.map(): Transformative Power</h3>
       <p>The map method creates a new array by applying a function to every element. It's perfect for data transformation pipelines.</p>
       
       <pre><code class="language-javascript">// Complex data transformation
@@ -92,7 +92,7 @@ const userSummaries = users.map(user => ({
 console.log(userSummaries);
 // Output: Complex transformed objects with calculated properties</code></pre>
       
-      <h3>Array.reduce(): The Ultimate Accumulator</h3>
+       <h3 style="margin-top: 1rem;">Array.reduce(): The Ultimate Accumulator</h3>
       <p>Reduce is the most versatile array method, capable of implementing any list transformation.</p>
       
       <pre><code class="language-javascript"> // Complex reduction for data analysis
@@ -134,10 +134,10 @@ const salesReport = sales.reduce((report, sale) => {
     excerpt:
       "Deep dive into Concurrent Rendering, Automatic Batching, and the new hooks that will transform how you build React applications.",
     content: `
-      <h2>Embracing the Future with React 18</h2>
+       <h2 style="margin-top: 2rem;">Embracing the Future with React 18</h2>
       <p>React 18 represents a significant milestone in the evolution of the library, introducing groundbreaking features that enable developers to build more responsive and performant applications. Let's explore these features in depth.</p>
       
-      <h3>Concurrent Rendering: A Game Changer</h3>
+       <h3 style="margin-top: 1rem;">Concurrent Rendering: A Game Changer</h3>
       <p>Concurrent rendering allows React to work on multiple state updates simultaneously, interrupting and resuming work as needed. This means your app can stay responsive even during expensive rendering operations.</p>
       
       <pre><code class="language-javascript">// Concurrent features in action
@@ -151,7 +151,7 @@ startTransition(() => {
   setSearchQuery(input);
 });</code></pre>
       
-      <h3>Automatic Batching for Better Performance</h3>
+       <h3 style="margin-top: 1rem;">Automatic Batching for Better Performance</h3>
       <p>React 18 automatically batches state updates, even in asynchronous operations like promises and timeouts. This reduces unnecessary re-renders and improves performance.</p>
       
       <pre><code class="language-javascript">// Before React 18: Multiple re-renders
@@ -168,7 +168,7 @@ setTimeout(() => {
   setCity('New York');
 }, 1000);</code></pre>
       
-      <h3>New Hooks for Advanced Use Cases</h3>
+       <h3 style="margin-top: 1rem;">New Hooks for Advanced Use Cases</h3>
       <p>The introduction of useId, useTransition, useDeferredValue, and useSyncExternalStore hooks provides powerful tools for complex scenarios.</p>
       
       <pre><code class="language-javascript">import { useId, useTransition, useDeferredValue } from 'react';
@@ -197,10 +197,10 @@ function Form() {
   );
 }</code></pre>
       
-      <h3>Server Components Revolution</h3>
+       <h3 style="margin-top: 1rem;">Server Components Revolution</h3>
       <p>React Server Components enable rendering components on the server, reducing bundle size and improving initial load performance.</p>
       
-      <h2>Migration Strategy</h2>
+       <h2 style="margin-top: 2rem;">Migration Strategy</h2>
       <p>Upgrading to React 18 is straightforward. Start by updating your React dependency and then gradually adopt new features as needed.</p>
 
       <pre><code class="language-javascript">// Using useSyncExternalStore for external state
@@ -237,10 +237,10 @@ function subscribe(callback) {
     excerpt:
       "Explore advanced TypeScript patterns, utility types, and architectural decisions that will elevate your TypeScript skills.",
     content: `
-      <h2>Advanced TypeScript Mastery</h2>
+       <h2 style="margin-top: 2rem;">Advanced TypeScript Mastery</h2>
       <p>TypeScript goes far beyond basic type annotations. Mastering advanced patterns can dramatically improve your code's safety, maintainability, and developer experience.</p>
 
-      <h3>Advanced Utility Types</h3>
+       <h3 style="margin-top: 1rem;">Advanced Utility Types</h3>
       <p>TypeScript's utility types provide powerful tools for type manipulation and transformation.</p>
 
       <pre><code class="language-typescript">// Conditional types with inference
@@ -275,7 +275,7 @@ type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 type ApiRoute = \`\${HttpMethod} \${ApiEndpoint}\`;
 const route: ApiRoute = 'GET /api/users'; // Valid</code></pre>
 
-      <h3>Advanced Generic Constraints</h3>
+       <h3 style="margin-top: 1rem;">Advanced Generic Constraints</h3>
       <p>Powerful generic constraints enable type-safe, flexible APIs.</p>
 
       <pre><code class="language-typescript">// Constraining generics with multiple conditions
@@ -311,7 +311,7 @@ async function fetchData<T, E extends boolean = false>(
 const result = await fetchData<User[]>('/api/users');
 const errorResult = await fetchData<User[], true>('/api/users', { throwOnError: true });</code></pre>
 
-      <h3>Branded Types for Runtime Safety</h3>
+       <h3 style="margin-top: 1rem;">Branded Types for Runtime Safety</h3>
       <p>Create nominal typing in TypeScript's structural type system for additional safety.</p>
 
       <pre><code class="language-typescript">// Branded types pattern
@@ -337,7 +337,7 @@ const email: Email = createEmail('user@example.com');
 // This would cause a type error:
 // const invalid: UserId = email;</code></pre>
 
-      <h3>Advanced Mapped Types</h3>
+       <h3 style="margin-top: 1rem;">Advanced Mapped Types</h3>
       <p>Mapped types enable powerful transformations of existing types.</p>
 
       <pre><code class="language-typescript">// Create type-safe event system
@@ -372,7 +372,7 @@ interface Config {
 type MutableConfig = FilterReadonly<Config>;
 // { timeout: number; retries: number }</code></pre>
 
-      <h3>Decorators for Meta-Programming</h3>
+       <h3 style="margin-top: 1rem;">Decorators for Meta-Programming</h3>
       <p>TypeScript decorators enable powerful meta-programming patterns.</p>
 
       <pre><code class="language-typescript">// Class decorator for validation
@@ -421,7 +421,7 @@ class Product {
 // This will throw validation error
 // const invalidProduct = new Product(150);</code></pre>
 
-      <h3>Performance and Best Practices</h3>
+       <h3 style="margin-top: 1rem;">Performance and Best Practices</h3>
       <p>Advanced TypeScript requires attention to performance and maintainability.</p>
 
       <pre><code class="language-typescript">// Avoid excessive type complexity
@@ -447,7 +447,7 @@ const routes = [
 
 type RoutePath = typeof routes[number]['path']; // '/home' | '/about'</code></pre>
 
-      <h2>Architectural Patterns</h2>
+       <h2 style="margin-top: 2rem;">Architectural Patterns</h2>
       <p>Applying these patterns in real-world applications requires careful architectural decisions.</p>
 
       <pre><code class="language-typescript">// Repository pattern with type safety
@@ -523,10 +523,10 @@ class QueryBuilder<T> {
     excerpt:
       "Explore the groundbreaking features in React 19 - Actions, Async Transitions, Server Components, and how they transform modern web development.",
     content: `
-    <h2>React 19: The Future of React is Here</h2>
+     <h2 style="margin-top: 2rem;">React 19: The Future of React is Here</h2>
     <p>React 19 represents the most significant update to React since the introduction of Hooks. With revolutionary features like Actions, enhanced Server Components, and improved performance, React 19 is set to redefine how we build web applications.</p>
 
-    <h3>🚀 Actions: Simplifying Data Mutations</h3>
+     <h3 style="margin-top: 1rem;">🚀 Actions: Simplifying Data Mutations</h3>
     <p>Actions are arguably the most exciting feature in React 19. They provide a standardized way to handle data mutations with built-in pending states, error handling, and optimistic updates.</p>
 
     <pre><code class="language-javascript">// Before React 19 - Manual state management
@@ -588,7 +588,7 @@ function UpdateProfile() {
   );
 }</code></pre>
 
-    <h3>🎯 useActionState: Unified Action Management</h3>
+     <h3 style="margin-top: 1rem;">🎯 useActionState: Unified Action Management</h3>
     <p>React 19 introduces <code>useActionState</code> to handle common Action patterns with even less boilerplate:</p>
 
     <pre><code class="language-javascript">// Using useActionState for form handling
@@ -614,7 +614,7 @@ function UpdateProfileForm() {
   );
 }</code></pre>
 
-    <h3>⚡ useOptimistic: Instant User Feedback</h3>
+     <h3 style="margin-top: 1rem;">⚡ useOptimistic: Instant User Feedback</h3>
     <p>Provide immediate visual feedback while mutations are in progress:</p>
 
     <pre><code class="language-javascript">function LikeButton({ postId, initialLikes }) {
@@ -635,7 +635,7 @@ function UpdateProfileForm() {
   );
 }</code></pre>
 
-    <h3>🔮 use Hook: Revolutionary Resource Reading</h3>
+     <h3 style="margin-top: 1rem;">🔮 use Hook: Revolutionary Resource Reading</h3>
     <p>The new <code>use</code> hook allows you to read resources directly in render, including promises and context:</p>
 
     <pre><code class="language-javascript">// Reading promises in render
@@ -656,7 +656,7 @@ function ThemeAwareHeading({ children }) {
   );
 }</code></pre>
 
-    <h3>🌐 Server Components: Production Ready</h3>
+     <h3 style="margin-top: 1rem;">🌐 Server Components: Production Ready</h3>
     <p>React 19 stabilizes Server Components, enabling true full-stack React applications:</p>
 
     <pre><code class="language-javascript">// Server Component - runs on the server
@@ -683,7 +683,7 @@ function Price({ price }) {
   return <span>{formattedPrice}</span>;
 }</code></pre>
 
-    <h3>🛠️ Server Actions: Client-to-Server Communication</h3>
+     <h3 style="margin-top: 1rem;">🛠️ Server Actions: Client-to-Server Communication</h3>
     <p>Server Actions allow client components to call async functions that execute on the server:</p>
 
     <pre><code class="language-javascript">// Server Action
@@ -702,7 +702,7 @@ function AddToCartButton({ productId }) {
   );
 }</code></pre>
 
-    <h3>🎨 Built-in Document Metadata Support</h3>
+     <h3 style="margin-top: 1rem;">🎨 Built-in Document Metadata Support</h3>
     <p>React 19 natively supports rendering document metadata tags anywhere in your component tree:</p>
 
     <pre><code class="language-javascript">function BlogPost({ post }) {
@@ -718,7 +718,7 @@ function AddToCartButton({ productId }) {
   );
 }</code></pre>
 
-    <h3>🚀 Performance Improvements</h3>
+     <h3 style="margin-top: 1rem;">🚀 Performance Improvements</h3>
     <p>React 19 brings significant performance enhancements:</p>
 
     <pre><code class="language-javascript">// Concurrent Features by Default
@@ -739,7 +739,7 @@ function SearchResults({ query }) {
 // React 19 provides detailed diffs for hydration mismatches
 // making debugging much easier</code></pre>
 
-    <h3>🔧 Developer Experience Enhancements</h3>
+     <h3 style="margin-top: 1rem;">🔧 Developer Experience Enhancements</h3>
     <p>Several quality-of-life improvements make development more enjoyable:</p>
 
     <pre><code class="language-javascript">// ref as prop - no more forwardRef
@@ -770,7 +770,7 @@ function App({ children }) {
   );
 }</code></pre>
 
-    <h2>Migration Strategy</h2>
+     <h2 style="margin-top: 2rem;">Migration Strategy</h2>
     <p>Upgrading to React 19 is designed to be smooth. Here's your migration checklist:</p>
 
     <ol>
@@ -781,7 +781,7 @@ function App({ children }) {
       <li><strong>Update Context Usage</strong>: Replace Context.Provider with Context</li>
     </ol>
 
-    <h2>Conclusion</h2>
+     <h2 style="margin-top: 2rem;">Conclusion</h2>
     <p>React 19 marks a significant evolution in the React ecosystem. With Actions simplifying data mutations, Server Components enabling true full-stack development, and numerous developer experience improvements, React continues to lead the way in modern web development.</p>
 
     <p>The focus on reducing boilerplate, improving performance, and providing better built-in solutions for common patterns makes React 19 the most productive version yet. Whether you're building a small interactive widget or a large-scale enterprise application, React 19 has features that will make your development experience better and your applications faster.</p>
@@ -802,10 +802,10 @@ function App({ children }) {
     excerpt:
       "Comprehensive guide to Next.js 14's revolutionary features including Server Actions, Streaming, and Advanced App Router patterns.",
     content: `
-    <h2>Next.js 14: The Full-Stack Framework Revolution</h2>
+     <h2 style="margin-top: 2rem;">Next.js 14: The Full-Stack Framework Revolution</h2>
     <p>Next.js 14 represents a paradigm shift in full-stack development. With Server Actions, Partial Prerendering, and enhanced performance optimizations, it's redefining what's possible with React-based applications.</p>
 
-    <h3>🚀 Server Actions: Full-Stack React Simplified</h3>
+     <h3 style="margin-top: 1rem;">🚀 Server Actions: Full-Stack React Simplified</h3>
     <p>Server Actions enable you to call server functions directly from client components, eliminating API routes for simple operations.</p>
 
     <pre><code class="language-javascript">// app/actions/user.ts
@@ -881,7 +881,7 @@ export function ProfileForm({ userId }: { userId: string }) {
   );
 }</code></pre>
 
-    <h3>⚡ Partial Prerendering (PPR): Hybrid Rendering at Scale</h3>
+     <h3 style="margin-top: 1rem;">⚡ Partial Prerendering (PPR): Hybrid Rendering at Scale</h3>
     <p>PPR combines static and dynamic rendering intelligently, delivering optimal performance for complex applications.</p>
 
     <pre><code class="language-javascript">// app/products/[id]/page.tsx
@@ -937,7 +937,7 @@ export async function RelatedProducts({ productId }: { productId: string }) {
   );
 }</code></pre>
 
-    <h3>📊 Advanced Data Fetching Strategies</h3>
+     <h3 style="margin-top: 1rem;">📊 Advanced Data Fetching Strategies</h3>
     <p>Next.js 14 introduces sophisticated caching and data fetching patterns for optimal performance.</p>
 
     <pre><code class="language-javascript">// lib/data-fetching.ts
@@ -980,7 +980,7 @@ export async function invalidateProductsCache() {
   revalidateTag('products');
 }</code></pre>
 
-    <h3>🎨 Advanced App Router Patterns</h3>
+     <h3 style="margin-top: 1rem;">🎨 Advanced App Router Patterns</h3>
     <p>Master complex routing scenarios with parallel routes, intercepting routes, and route groups.</p>
 
     <pre><code class="language-javascript">// app/(dashboard)/@analytics/page.tsx
@@ -1038,7 +1038,7 @@ export async function POST(request: Request) {
   return Response.json({ success: true });
 }</code></pre>
 
-    <h3>🔧 Performance Monitoring & Optimization</h3>
+     <h3 style="margin-top: 1rem;">🔧 Performance Monitoring & Optimization</h3>
     <p>Advanced techniques for monitoring and optimizing Next.js applications.</p>
 
     <pre><code class="language-javascript">// app/layout.tsx
@@ -1089,7 +1089,7 @@ export function middleware(request: NextRequest) {
   return response;
 }</code></pre>
 
-    <h2>Vercel Integration & Deployment</h2>
+     <h2 style="margin-top: 2rem;">Vercel Integration & Deployment</h2>
     <p>Leverage Vercel's platform for optimal Next.js 14 deployments.</p>
 
     <pre><code class="language-javascript">// vercel.json
@@ -1143,7 +1143,7 @@ const nextConfig = {
 
 module.exports = nextConfig;</code></pre>
 
-    <h2>Conclusion</h2>
+     <h2 style="margin-top: 2rem;">Conclusion</h2>
     <p>Next.js 14 represents the pinnacle of full-stack React development. With Server Actions eliminating API boilerplate, Partial Prerendering delivering unprecedented performance, and advanced routing patterns enabling complex application architectures, it's never been easier to build production-ready applications.</p>
   `,
     image:
@@ -1159,10 +1159,10 @@ module.exports = nextConfig;</code></pre>
     excerpt:
       "Build AI-powered web applications with Vercel AI SDK, OpenAI, and real-time streaming for modern user experiences.",
     content: `
-    <h2>AI in Web Applications</h2>
+     <h2 style="margin-top: 2rem;">AI in Web Applications</h2>
     <p>Learn how to integrate AI features into your web applications using modern tools and best practices.</p>
 
-    <h3>Vercel AI SDK Setup</h3>
+     <h3 style="margin-top: 1rem;">Vercel AI SDK Setup</h3>
     <p>Getting started with Vercel AI SDK for unified AI interactions.</p>
 
     <pre><code class="language-javascript">// Install dependencies
@@ -1175,7 +1175,7 @@ export const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });</code></pre>
 
-    <h3>Simple Chat Interface</h3>
+     <h3 style="margin-top: 1rem;">Simple Chat Interface</h3>
     <p>Create a basic AI chat interface with streaming responses.</p>
 
     <pre><code class="language-javascript">// app/api/chat/route.js
@@ -1228,7 +1228,7 @@ export function Chat() {
   );
 }</code></pre>
 
-    <h3>AI-Powered Form Generation</h3>
+     <h3 style="margin-top: 1rem;">AI-Powered Form Generation</h3>
     <p>Generate forms dynamically based on user descriptions.</p>
 
     <pre><code class="language-javascript">// app/api/generate-form/route.js
@@ -1250,7 +1250,7 @@ export async function POST(req) {
   });
 }</code></pre>
 
-    <h3>Rate Limiting for AI Endpoints</h3>
+     <h3 style="margin-top: 1rem;">Rate Limiting for AI Endpoints</h3>
     <p>Protect your AI endpoints from abuse with rate limiting.</p>
 
     <pre><code class="language-javascript">// lib/rate-limit.js
@@ -1278,7 +1278,7 @@ export class RateLimiter {
   }
 }</code></pre>
 
-    <h3>Environment Configuration</h3>
+     <h3 style="margin-top: 1rem;">Environment Configuration</h3>
     <p>Set up proper environment variables for AI services.</p>
 
     <pre><code class="language-bash"># .env.local
@@ -1287,7 +1287,7 @@ NEXT_PUBLIC_AI_ENABLED=true
 AI_MAX_TOKENS=1000
 AI_TEMPERATURE=0.7</code></pre>
 
-    <h2>Best Practices</h2>
+     <h2 style="margin-top: 2rem;">Best Practices</h2>
     <ul>
       <li>Always validate user input before sending to AI</li>
       <li>Implement proper error handling</li>
@@ -1313,10 +1313,10 @@ AI_TEMPERATURE=0.7</code></pre>
     excerpt:
       "Go beyond the basics with advanced Tailwind CSS techniques, performance optimization, and production-ready patterns for 2024.",
     content: `
-    <h2>Beyond Utility Classes: Advanced Tailwind CSS Mastery</h2>
+     <h2 style="margin-top: 2rem;">Beyond Utility Classes: Advanced Tailwind CSS Mastery</h2>
     <p>Tailwind CSS has evolved from a simple utility-first framework to a comprehensive design system. Let's explore advanced patterns that will elevate your styling skills to professional level.</p>
 
-    <h3>🚀 Advanced Configuration & Customization</h3>
+     <h3 style="margin-top: 1rem;">🚀 Advanced Configuration & Customization</h3>
     <p>Tailwind's true power lies in its extensibility. Customize it to match your design system perfectly.</p>
 
     <pre><code class="language-javascript">// tailwind.config.js - Advanced configuration
@@ -1425,7 +1425,7 @@ module.exports = {
   ],
 };</code></pre>
 
-    <h3>🎨 Advanced Layout Patterns</h3>
+     <h3 style="margin-top: 1rem;">🎨 Advanced Layout Patterns</h3>
     <p>Master complex layouts with advanced Grid and Flexbox patterns.</p>
 
     <pre><code class="language-html">&lt;!-- Advanced Grid Layouts --&gt;
@@ -1494,7 +1494,7 @@ module.exports = {
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-    <h3>⚡ Performance Optimization</h3>
+     <h3 style="margin-top: 1rem;">⚡ Performance Optimization</h3>
     <p>Optimize Tailwind CSS for production with these advanced techniques.</p>
 
     <pre><code class="language-javascript">// PostCSS configuration for optimization
@@ -1573,7 +1573,7 @@ module.exports = {
   },
 };</code></pre>
 
-    <h3>🎭 Advanced Responsive & State Variants</h3>
+     <h3 style="margin-top: 1rem;">🎭 Advanced Responsive & State Variants</h3>
     <p>Master responsive design with advanced breakpoints and state management.</p>
 
     <pre><code class="language-html">&lt;!-- Advanced responsive patterns --&gt;
@@ -1670,7 +1670,7 @@ module.exports = {
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-    <h3>🔄 Dynamic Classes & Runtime Styles</h3>
+     <h3 style="margin-top: 1rem;">🔄 Dynamic Classes & Runtime Styles</h3>
     <p>Handle dynamic styles safely and efficiently.</p>
 
     <pre><code class="language-javascript">// React component with dynamic Tailwind classes
@@ -1730,7 +1730,7 @@ function Alert({ type, children }) {
   );
 }</code></pre>
 
-    <h3>🎯 Design Token System with Tailwind</h3>
+     <h3 style="margin-top: 1rem;">🎯 Design Token System with Tailwind</h3>
     <p>Create a consistent design system using Tailwind's configuration.</p>
 
     <pre><code class="language-javascript">// design-tokens.js - Centralized design tokens
@@ -1786,7 +1786,7 @@ module.exports = {
   },
 };</code></pre>
 
-    <h3>🔧 Advanced Plugin Development</h3>
+     <h3 style="margin-top: 1rem;">🔧 Advanced Plugin Development</h3>
     <p>Create custom Tailwind plugins for reusable patterns.</p>
 
     <pre><code class="language-javascript">// plugins/advanced-utilities.js
@@ -1872,7 +1872,7 @@ module.exports = plugin(function({ addUtilities, theme, e }) {
   },
 });</code></pre>
 
-    <h2>Best Practices Summary</h2>
+     <h2 style="margin-top: 2rem;">Best Practices Summary</h2>
     <ol>
       <li><strong>Use JIT Mode:</strong> Always enable Just-in-Time mode for optimal performance</li>
       <li><strong>Extract Components:</strong> Create reusable component classes for repeated patterns</li>
@@ -1899,16 +1899,16 @@ module.exports = plugin(function({ addUtilities, theme, e }) {
     excerpt:
       "Leverage TanStack Query to manage AI data fetching and caching in React apps efficiently.",
     content: `
-    <h2>Why TanStack Query for AI?</h2>
+     <h2 style="margin-top: 2rem;">Why TanStack Query for AI?</h2>
     <p>Using AI models often involves network requests for generating responses. 
     TanStack Query simplifies fetching, caching, and managing server state in React applications, 
     making AI integration more efficient and reactive.</p>
 
-    <h3>Installing Dependencies</h3>
+     <h3 style="margin-top: 1rem;">Installing Dependencies</h3>
     <pre><code class="language-bash">// Install required packages
 npm install @tanstack/react-query openai</code></pre>
 
-    <h3>Setting Up OpenAI Client</h3>
+     <h3 style="margin-top: 1rem;">Setting Up OpenAI Client</h3>
     <pre><code class="language-javascript">// lib/openai.js
 import { OpenAI } from "openai";
 
@@ -1916,7 +1916,7 @@ export const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });</code></pre>
 
-    <h3>Using TanStack Query for AI Requests</h3>
+     <h3 style="margin-top: 1rem;">Using TanStack Query for AI Requests</h3>
     <pre><code class="language-javascript">// hooks/useAIResponse.js
 import { useQuery } from "@tanstack/react-query";
 import { openai } from "@/lib/openai";
@@ -1938,7 +1938,7 @@ export const useAIResponse = (prompt) => {
   );
 };</code></pre>
 
-    <h3>AI Chat Component</h3>
+     <h3 style="margin-top: 1rem;">AI Chat Component</h3>
     <pre><code class="language-javascript">// components/AIChat.jsx
 'use client';
 import { useState } from "react";
@@ -1975,7 +1975,7 @@ export function AIChat() {
   );
 }</code></pre>
 
-    <h3>Best Practices</h3>
+     <h3 style="margin-top: 1rem;">Best Practices</h3>
     <ul>
       <li>Use TanStack Query caching to reduce repeated AI requests</li>
       <li>Handle errors with onError or error boundaries</li>
@@ -2000,16 +2000,16 @@ export function AIChat() {
     excerpt:
       "Learn how to build clean, accessible, and customizable UI components using ShadCN/UI in React.",
     content: `
-    <h2>What is ShadCN/UI?</h2>
+     <h2 style="margin-top: 2rem;">What is ShadCN/UI?</h2>
     <p>ShadCN/UI is a modern React component library built on top of Radix UI and TailwindCSS. 
     It provides ready-made, accessible, and highly customizable UI components for React applications.</p>
 
-    <h3>Installing ShadCN/UI</h3>
+     <h3 style="margin-top: 1rem;">Installing ShadCN/UI</h3>
     <pre><code class="language-bash">// Install core dependencies
 npm install @shadcn/ui @radix-ui/react-primitive tailwindcss
 </code></pre>
 
-    <h3>Using a Button Component</h3>
+     <h3 style="margin-top: 1rem;">Using a Button Component</h3>
     <pre><code class="language-javascript">// components/MyButton.jsx
 import { Button } from '@shadcn/ui';
 
@@ -2022,7 +2022,7 @@ export function MyButton({ label, onClick }) {
 }
 </code></pre>
 
-    <h3>Creating a Dialog Modal</h3>
+     <h3 style="margin-top: 1rem;">Creating a Dialog Modal</h3>
     <pre><code class="language-javascript">// components/MyModal.jsx
 import { Dialog, DialogContent, DialogTrigger } from '@shadcn/ui';
 
@@ -2044,7 +2044,7 @@ export function MyModal() {
 }
 </code></pre>
 
-    <h3>Customizing Components</h3>
+     <h3 style="margin-top: 1rem;">Customizing Components</h3>
     <p>All ShadCN/UI components support TailwindCSS classes and variants:</p>
     <pre><code class="language-javascript">// Example: Custom button
 <Button variant="destructive" className="bg-red-600 hover:bg-red-700">
@@ -2052,7 +2052,7 @@ export function MyModal() {
 </Button>
 </code></pre>
 
-    <h3>Best Practices</h3>
+     <h3 style="margin-top: 1rem;">Best Practices</h3>
     <ul>
       <li>Use TailwindCSS to customize spacing, colors, and typography</li>
       <li>Always wrap interactive elements with accessible wrappers like DialogTrigger or PopoverTrigger</li>
@@ -2060,7 +2060,7 @@ export function MyModal() {
       <li>Keep your UI consistent by using component variants</li>
     </ul>
 
-    <h2>Conclusion</h2>
+     <h2 style="margin-top: 2rem;">Conclusion</h2>
     <p>ShadCN/UI makes it easy to build **clean, responsive, and accessible React interfaces** quickly. 
     Whether you need buttons, modals, or complex dialogs, ShadCN/UI gives you the building blocks with minimal boilerplate.</p>
   `,
@@ -2078,7 +2078,7 @@ export function MyModal() {
     excerpt:
       "A full beginner-to-advanced guide to fetching, caching, and managing server state in React applications using TanStack Query.",
     content: `
-    <h2>Introduction</h2>
+     <h2 style="margin-top: 2rem;">Introduction</h2>
     <p><strong>TanStack Query</strong> (formerly React Query) is the most powerful and efficient library for handling 
     asynchronous server state in React. Instead of manually managing loading states, caching, refetching, or syncing UI with server data,
     TanStack Query handles everything automatically with a declarative API.</p>
@@ -2089,12 +2089,12 @@ export function MyModal() {
       <li><strong>Advanced server-state techniques</strong> like mutations, background updates, and DevTools</li>
     </ul>
 
-    <h2>What is Server State?</h2>
+     <h2 style="margin-top: 2rem;">What is Server State?</h2>
     <p>Server state represents data fetched from a backend or API. It is shared, asynchronous, cacheable, and needs to stay synced across the UI.
     Traditional solutions like Redux or MobX work best for client state, but are overkill and repetitive for server state. 
     TanStack Query focuses purely on server state, simplifying your architecture dramatically.</p>
 
-    <h2>Why Use TanStack Query?</h2>
+     <h2 style="margin-top: 2rem;">Why Use TanStack Query?</h2>
     <ul>
       <li><strong>Automatic caching</strong> with stale/refresh logic</li>
       <li><strong>Automatic refetching</strong> on tab focus, reconnect, or intervals</li>
@@ -2104,10 +2104,10 @@ export function MyModal() {
       <li><strong>Great DevTools</strong> for debugging</li>
     </ul>
 
-    <h2>Installing TanStack Query</h2>
+     <h2 style="margin-top: 2rem;">Installing TanStack Query</h2>
     <pre><code class="language-bash">npm install @tanstack/react-query</code></pre>
 
-    <h2>Setting Up QueryClient</h2>
+     <h2 style="margin-top: 2rem;">Setting Up QueryClient</h2>
     <p>Before using TanStack Query hooks, wrap your app with <code>QueryClientProvider</code>:</p>
 
     <pre><code class="language-javascript">// app/providers/QueryProvider.jsx
@@ -2125,7 +2125,7 @@ export function Providers({ children }) {
 }
 </code></pre>
 
-    <h2>Fetching Data with useQuery</h2>
+     <h2 style="margin-top: 2rem;">Fetching Data with useQuery</h2>
     <p>The <code>useQuery</code> hook handles fetching, caching, and updating data automatically.</p>
 
     <pre><code class="language-javascript">// components/UserList.jsx
@@ -2152,7 +2152,7 @@ export function UserList() {
 }
 </code></pre>
 
-    <h2>Automatic Background Refresh</h2>
+     <h2 style="margin-top: 2rem;">Automatic Background Refresh</h2>
     <p>TanStack Query can refetch data automatically on intervals:</p>
 
     <pre><code class="language-javascript">useQuery(['users'], fetchUsers, {
@@ -2161,7 +2161,7 @@ export function UserList() {
 });
 </code></pre>
 
-    <h2>Mutations for Creating or Editing Data</h2>
+     <h2 style="margin-top: 2rem;">Mutations for Creating or Editing Data</h2>
     <p>To update server data (POST / PUT / DELETE) use <code>useMutation</code>:</p>
 
     <pre><code class="language-javascript">// AddUser.jsx
@@ -2192,7 +2192,7 @@ export function AddUser() {
 }
 </code></pre>
 
-    <h2>Using DevTools</h2>
+     <h2 style="margin-top: 2rem;">Using DevTools</h2>
     <pre><code class="language-bash">npm install @tanstack/react-query-devtools</code></pre>
 
     <pre><code class="language-javascript">// App.jsx
@@ -2208,7 +2208,7 @@ function App() {
 }
 </code></pre>
 
-    <h2>Best Practices</h2>
+     <h2 style="margin-top: 2rem;">Best Practices</h2>
     <ul>
       <li>Use descriptive query keys like <code>['user', id]</code></li>
       <li>Keep queries focused on one dataset</li>
@@ -2217,7 +2217,7 @@ function App() {
       <li>Prefer small composable fetchers over large all-in-one APIs</li>
     </ul>
 
-    <h2>Conclusion</h2>
+     <h2 style="margin-top: 2rem;">Conclusion</h2>
     <p>TanStack Query makes server state management fast, scalable, and reliable. From basic fetching to advanced cache invalidation and DevTools support, it dramatically improves data handling in React apps and removes the need for manual loading states or Redux boilerplate.</p>
   `,
     image:
@@ -2234,15 +2234,15 @@ function App() {
     excerpt:
       "Learn how to efficiently create and manage forms in React using the Formik library.",
     content: `
-    <h2>Introduction</h2>
+     <h2 style="margin-top: 2rem;">Introduction</h2>
     <p>Form building in React can be complex, requiring state management, validation, and error handling. 
     <strong>Formik</strong> simplifies this process with an intuitive API and built-in validation.</p>
 
-    <h2>What is Formik?</h2>
+     <h2 style="margin-top: 2rem;">What is Formik?</h2>
     <p><a href="https://formik.org/" target="_blank">Formik</a> is an open-source library for building and managing forms in React. 
     It provides components and utilities to handle form data, validation, and submission efficiently.</p>
 
-    <h3>Traditional Form Handling in React</h3>
+     <h3 style="margin-top: 1rem;">Traditional Form Handling in React</h3>
     <pre><code class="language-javascript">
 import { useState } from "react";
 
@@ -2272,7 +2272,7 @@ function InputForm() {
 export default InputForm;
     </code></pre>
 
-    <h3>Using Formik</h3>
+     <h3 style="margin-top: 1rem;">Using Formik</h3>
     <p>Formik handles state, validation, and submission internally. You only need to import its components:</p>
     <pre><code class="language-javascript">
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -2316,7 +2316,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 </Formik>
     </code></pre>
 
-    <h3>Benefits of Using Formik</h3>
+     <h3 style="margin-top: 1rem;">Benefits of Using Formik</h3>
     <ul>
       <li>Automatically manages form state and input values</li>
       <li>Built-in validation and error messages</li>
@@ -2324,7 +2324,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
       <li>Integrates easily with UI libraries like Material-UI, Chakra UI, or Tailwind CSS</li>
     </ul>
 
-    <h2>Conclusion</h2>
+     <h2 style="margin-top: 2rem;">Conclusion</h2>
     <p>Formik simplifies React form development by handling state, validation, and submission efficiently. 
     You can focus on building great user experiences instead of writing repetitive boilerplate code.</p>
   `,
@@ -2333,5 +2333,231 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
     date: "2025-12-01",
     readTime: "6 min",
     category: "React Forms",
+  },
+  {
+    id: 13,
+    slug: "react-server-components-security-risks",
+    title: "Security Risks in React Server Components and Server Actions",
+    excerpt:
+      "Understand the security pitfalls of React Server Components and Server Actions in Next.js, and learn how to avoid common attack vectors.",
+    content: `
+     <h2 style="margin-top: 2rem;">Introduction</h2>
+    <p>With the introduction of <strong>React Server Components (RSC)</strong> and <strong>Server Actions</strong>, 
+    Next.js significantly changed how developers build modern React applications. While these features improve performance 
+    and developer experience, they also introduce <strong>new security risks</strong> when used incorrectly.</p>
+
+    <p>In early <strong>2024</strong>, several discussions and reports highlighted potential attack vectors caused not by bugs in React itself, 
+    but by incorrect assumptions about how server-only code behaves.</p>
+
+
+    <h2 style="margin-top: 2rem;">What Are React Server Components?</h2>
+
+    <p>React Server Components allow you to render components on the server without sending their JavaScript to the client. 
+    They can directly access databases, environment variables, and internal APIs.</p>
+
+    <p>However, any data passed from a Server Component to a Client Component is <strong>serialized and sent to the browser</strong>, 
+    which is where many security issues begin.</p>
+
+    <h2 style="margin-top: 2rem;">Common Security Pitfalls</h2>
+
+     <h3 style="margin-top: 1rem;">1. Accidental Data Leakage</h3>
+    <p>Developers often assume that Server Components are completely private. This is not always true.</p>
+
+    <pre><code class="language-javascript">
+const user = await getUserFromDatabase();
+return <ClientProfile user={user} />;
+    </code></pre>
+
+    <p>If the <code>user</code> object contains sensitive fields (tokens, roles, internal flags), 
+    they may be exposed to the client via serialization.</p>
+
+     <h3 style="margin-top: 1rem;">2. Unprotected Server Actions</h3>
+    <p>Server Actions are compiled into internal HTTP endpoints. If authentication and authorization are missing, 
+    attackers can call these endpoints directly.</p>
+
+    <pre><code class="language-javascript">
+"use server";
+
+export async function deleteAccount(userId) {
+  await db.users.delete(userId);
+}
+    </code></pre>
+
+    <p>Without proper session or role checks, this action becomes a serious security vulnerability.</p>
+
+    <h3 style="margin-top: 1rem;">3. Cache and Authorization Issues</h3>
+    <p>Next.js aggressively caches Server Components. When combined with authentication, this can cause 
+    <strong>data leakage between users</strong> if caching is misconfigured.</p>
+
+    <pre><code class="language-javascript">
+export const dynamic = "force-static";
+    </code></pre>
+
+    <p>Using static rendering for authenticated content can result in one user's data being served to another.</p>
+
+    <h2 style="margin-top: 2rem;">Best Practices for Secure Usage</h2>
+
+    <ul>
+      <li>Always validate authentication and authorization inside Server Actions</li>
+      <li>Never pass full database objects to Client Components</li>
+      <li>Explicitly control caching behavior for authenticated routes</li>
+      <li>Treat Server Components as powerful but potentially dangerous tools</li>
+      <li>Audit serialized props using browser dev tools</li>
+    </ul>
+
+    <h2 style="margin-top: 2rem;">Is This a React Vulnerability?</h2>
+    <p>No. These issues are not zero-day exploits or framework bugs. They are the result of 
+    <strong>misunderstanding the execution and serialization model</strong> of Server Components.</p>
+
+    <p>React and Next.js provide the tools, but security remains the developer’s responsibility.</p>
+
+    <h2 style="margin-top: 2rem;">Conclusion</h2>
+    <p>React Server Components and Server Actions are powerful features that enable faster and more scalable applications. 
+    However, they also expand the attack surface if used without proper security considerations.</p>
+
+    <p>By understanding how data flows from the server to the client and applying strict validation and caching rules, 
+    developers can safely leverage these modern React capabilities.</p>
+  `,
+    image:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
+    date: "2025-12-25",
+    readTime: "7 min",
+    category: "React Security",
+  },
+  {
+    id: 14,
+    slug: "high-performance-data-visualization-with-scichart",
+    title: "High-Performance Data Visualization in React with SciChart",
+    excerpt:
+      "Learn how to build lightning-fast, interactive data visualizations in React using SciChart and WebAssembly.",
+    content: `
+     <h2 style="margin-top: 2rem;">Introduction</h2>
+    <p>
+      Data visualization is a critical part of modern applications, especially in domains like 
+      <strong>finance, medical imaging, IoT, and real-time analytics</strong>.
+      While many charting libraries work well for simple use cases, they often struggle with 
+      large datasets and real-time updates.
+    </p>
+    <p>
+      <strong>SciChart</strong> is built specifically to solve these performance challenges by leveraging 
+      <strong>WebAssembly (WASM)</strong> and GPU-accelerated rendering.
+    </p>
+
+     <h2 style="margin-top: 2rem;">What is SciChart?</h2>
+    <p>
+      <a href="https://www.scichart.com/" target="_blank">SciChart</a> is a high-performance charting library 
+      for JavaScript and React. It is designed to handle millions of data points while maintaining 
+      smooth interactions like zooming, panning, and real-time updates.
+    </p>
+
+     <h3 style="margin-top: 1rem;">Why Choose SciChart for Data Visualization?</h3>
+    <ul>
+      <li>WebAssembly-powered rendering for extreme performance</li>
+      <li>Handles millions of data points without lag</li>
+      <li>Optimized for real-time and streaming data</li>
+      <li>Rich interaction: zoom, pan, tooltips, annotations</li>
+      <li>First-class React support</li>
+    </ul>
+
+     <h2 style="margin-top: 2rem;">Installing SciChart</h2>
+    <p>Install SciChart using npm:</p>
+    <pre><code class="language-bash">
+npm install scichart
+    </code></pre>
+
+     <h2 style="margin-top: 2rem;">Configuring WebAssembly</h2>
+    <p>
+      SciChart uses WebAssembly for high-performance rendering. 
+      The WASM file must be accessible by the browser.
+    </p>
+
+    <pre><code class="language-javascript">
+// Configure SciChart WASM
+import { SciChartSurface } from "scichart";
+
+const wasmUrl = new URL(
+  "/node_modules/scichart/_wasm/scichart2d.wasm",
+  import.meta.url
+).href;
+
+SciChartSurface.configure({ wasmUrl });
+    </code></pre>
+
+    <p>
+      This approach ensures the correct frontend origin is used in both 
+      local development and containerized environments.
+    </p>
+
+     <h2 style="margin-top: 2rem;">Creating Your First Chart in React</h2>
+    <pre><code class="language-javascript">
+import { SciChartSurface, NumericAxis, FastLineRenderableSeries, XyDataSeries } from "scichart";
+
+async function initChart(divId) {
+  const { sciChartSurface, wasmContext } =
+    await SciChartSurface.create(divId);
+
+  sciChartSurface.xAxes.add(new NumericAxis(wasmContext));
+  sciChartSurface.yAxes.add(new NumericAxis(wasmContext));
+
+  const dataSeries = new XyDataSeries(wasmContext, {
+    xValues: [1, 2, 3, 4, 5],
+    yValues: [10, 13, 15, 12, 18],
+  });
+
+  sciChartSurface.renderableSeries.add(
+    new FastLineRenderableSeries(wasmContext, {
+      dataSeries,
+    })
+  );
+}
+    </code></pre>
+
+     <h2 style="margin-top: 2rem;">Handling Large Datasets</h2>
+    <p>
+      Unlike traditional SVG or Canvas-based chart libraries, SciChart is optimized for 
+      <strong>big data visualization</strong>.
+      It can render hundreds of thousands or even millions of points efficiently.
+    </p>
+
+    <ul>
+      <li>Use <code>FastLineRenderableSeries</code> for large datasets</li>
+      <li>Enable data decimation when visual fidelity is acceptable</li>
+      <li>Batch updates instead of pushing points one by one</li>
+    </ul>
+
+     <h2 style="margin-top: 2rem;">Real-Time Data Visualization</h2>
+    <p>
+      SciChart shines in real-time scenarios such as live trading charts or sensor monitoring.
+      You can append new data points at high frequency without re-rendering the entire chart.
+    </p>
+
+    <pre><code class="language-javascript">
+dataSeries.append(newXValue, newYValue);
+    </code></pre>
+
+     <h2 style="margin-top: 2rem;">Best Practices</h2>
+    <ul>
+      <li>Always load the WASM file from the correct frontend origin</li>
+      <li>Dispose of chart instances on component unmount</li>
+      <li>Prefer WebGL-accelerated series for heavy datasets</li>
+      <li>Keep UI controls (filters, toggles) outside the render loop</li>
+    </ul>
+
+     <h2 style="margin-top: 2rem;">Conclusion</h2>
+    <p>
+      SciChart is an excellent choice when performance truly matters.
+      If your application involves <strong>large datasets, real-time updates, or complex interactions</strong>,
+      SciChart provides a level of speed and reliability that traditional charting libraries cannot match.
+    </p>
+    <p>
+      By combining SciChart with React, you can build powerful, interactive, and scalable 
+      data visualization experiences suitable for production-grade applications.
+    </p>
+  `,
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+    date: "2026-01-01",
+    readTime: "7 min",
+    category: "Data Visualization",
   },
 ];
